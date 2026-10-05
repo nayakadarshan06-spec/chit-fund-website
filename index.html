@@ -89,9 +89,11 @@ input:focus,select:focus{outline:2px solid rgba(18,107,79,.16);border-color:var(
 <section id="loginView" class="hidden">
   <div class="card login">
     <h2>Admin Login</h2>
-    <p><strong>Admin: Darshan</strong></p>
-    <p class="notice">Use the admin password you set during setup.</p>
-    <input id="adminPassword" type="password" placeholder="Admin password" style="width:100%">
+    <p><strong>Admin Login</strong></p>
+    <p class="notice">Only the Firebase admin account can make changes. There is no sign-up option on this website.</p>
+    <input id="adminEmail" type="email" placeholder="Admin email" autocomplete="username" style="width:100%">
+    <div style="height:10px"></div>
+    <input id="adminPassword" type="password" placeholder="Admin password" autocomplete="current-password" style="width:100%">
     <div style="height:10px"></div>
     <button class="primary" style="width:100%" onclick="login()">Login</button>
     <div style="height:8px"></div><button style="width:100%" onclick="backHome()">Back</button>
@@ -182,7 +184,8 @@ input:focus,select:focus{outline:2px solid rgba(18,107,79,.16);border-color:var(
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 /* Paste your Firebase web app config here. */
 const firebaseConfig = {
@@ -197,8 +200,12 @@ const firebaseConfig = {
 
 const DEMO = false;
 const DEMO_KEY = "chitFundDemo_v2";
-let db=null;
-if(!DEMO){ db=getFirestore(initializeApp(firebaseConfig)); }
+let db=null, auth=null;
+if(!DEMO){
+  const app=initializeApp(firebaseConfig);
+  db=getFirestore(app);
+  auth=getAuth(app);
+}
 
 let state={
  settings:{monthly:2000, months:15},
@@ -347,18 +354,22 @@ async function saveAllChanges(){
     if(idx>=0) state.winners[idx]=item; else state.winners.push(item);
   }
 
-  if(DEMO){
-    localStorage.setItem(DEMO_KEY,JSON.stringify(state));
-  } else {
-    await setDoc(doc(db,"settings","main"),state.settings);
-    for(const m of state.members) await setDoc(doc(db,"members",m.id),{name:m.name});
-    for(const item of pendingPayments) await setDoc(doc(db,"payments",item.id),{memberId:item.memberId,month:item.month,amount:item.amount,date:item.date});
-    for(const item of pendingWinners) await setDoc(doc(db,"winners",item.id),{month:item.month,memberId:item.memberId,date:item.date});
+  try{
+    if(DEMO){
+      localStorage.setItem(DEMO_KEY,JSON.stringify(state));
+    } else {
+      if(!auth.currentUser) throw new Error("Your admin session has expired. Please login again.");
+      await setDoc(doc(db,"settings","main"),state.settings);
+      for(const m of state.members) await setDoc(doc(db,"members",m.id),{name:m.name});
+      for(const item of pendingPayments) await setDoc(doc(db,"payments",item.id),{memberId:item.memberId,month:item.month,amount:item.amount,date:item.date});
+      for(const item of pendingWinners) await setDoc(doc(db,"winners",item.id),{month:item.month,memberId:item.memberId,date:item.date});
+    }
+    pendingPayments=[]; pendingWinners=[];
+    render();
+    alert("All changes saved successfully.");
+  }catch(e){
+    alert("Save failed: " + (e.message || "Please check your Firebase login and rules."));
   }
-
-  pendingPayments=[]; pendingWinners=[];
-  render();
-  alert("All changes saved successfully.");
 }
 
 window.renderPublicHistory=()=>{
@@ -373,15 +384,41 @@ window.renderPublicHistory=()=>{
 };
 window.showLogin=()=>{publicView.classList.add("hidden");adminView.classList.add("hidden");loginView.classList.remove("hidden")};
 window.backHome=()=>{loginView.classList.add("hidden");publicView.classList.remove("hidden")};
-window.login=()=>{ if(document.getElementById("adminPassword").value==="Kalki"){loginView.classList.add("hidden");publicView.classList.add("hidden");adminView.classList.remove("hidden");render();} else document.getElementById("loginMsg").textContent="Incorrect password."; };
-window.logout=()=>{
+window.login=async()=>{
+  const email=document.getElementById("adminEmail").value.trim();
+  const password=document.getElementById("adminPassword").value;
+  const msg=document.getElementById("loginMsg");
+  msg.textContent="";
+  if(!email || !password){ msg.textContent="Enter your admin email and password."; return; }
+  try{
+    if(DEMO){ throw new Error("Demo mode is disabled."); }
+    await signInWithEmailAndPassword(auth,email,password);
+    loginView.classList.add("hidden");
+    publicView.classList.add("hidden");
+    adminView.classList.remove("hidden");
+    await load();
+  }catch(e){
+    msg.textContent = e.code === "auth/invalid-credential" ? "Incorrect email or password." : (e.message || "Login failed.");
+  }
+};
+window.logout=async()=>{
   if(pendingPayments.length||pendingWinners.length){
     if(!confirm("You have unsaved changes. Logout without saving?")) return;
   }
   pendingPayments=[]; pendingWinners=[];
+  if(!DEMO && auth){ try{ await signOut(auth); }catch(e){} }
   adminView.classList.add("hidden");publicView.classList.remove("hidden");
 };
 document.getElementById("payDate").value=today(); document.getElementById("winnerDate").value=today();
+if(!DEMO && auth){
+  onAuthStateChanged(auth, user=>{
+    if(!user){
+      adminView.classList.add("hidden");
+      if(!loginView.classList.contains("hidden")) return;
+      publicView.classList.remove("hidden");
+    }
+  });
+}
 load();
 </script>
 </body>
