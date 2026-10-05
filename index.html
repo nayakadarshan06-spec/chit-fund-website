@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>15 Member Chit Fund</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#2457d6;--line:#e5e7eb;--good:#15803d;--danger:#b42318}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,#173b9a,#2457d6);color:#fff;padding:22px 16px 28px;border-radius:0 0 24px 24px}
+.wrap{max-width:1050px;margin:auto;padding:0 14px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-size:21px;font-weight:800}.sub{opacity:.85;font-size:13px;margin-top:4px}
+button{border:0;border-radius:12px;padding:11px 14px;font-weight:700;cursor:pointer}button.primary{background:var(--primary);color:white}button.light{background:#fff;color:#173b9a}button.danger{background:#fee4e2;color:var(--danger)}
+main{padding:18px 0 40px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(16,24,40,.04)}.label{font-size:12px;color:var(--muted)}.value{font-size:24px;font-weight:800;margin-top:5px}
+.panel{margin-top:16px}.panel h2{font-size:17px;margin:0 0 12px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{color:var(--muted);font-weight:700;background:#fafafa}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:14px}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.paid{background:#dcfce7;color:var(--good)}.pending{background:#fff7ed;color:#c2410c}.winner{background:#e0e7ff;color:#3730a3}
+input,select{padding:11px 12px;border:1px solid #d0d5dd;border-radius:10px;font-size:14px;background:#fff}.login{max-width:430px;margin:45px auto}.hidden{display:none}.notice{font-size:12px;color:var(--muted);line-height:1.5}.adminbox{background:#eef4ff;border:1px solid #c7d7fe}.footer{color:var(--muted);font-size:12px;text-align:center;margin-top:30px}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.top{align-items:flex-start}.value{font-size:20px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top">
+  <div><div class="brand">15 Member Chit Fund</div><div class="sub">₹2,000 monthly • 15 months • ₹30,000 monthly pool</div></div>
+  <button class="light" onclick="showLogin()">Admin</button>
+</div></header>
+
+<main class="wrap">
+<section id="publicView">
+  <div class="grid">
+    <div class="card"><div class="label">Members</div><div class="value" id="membersCount">15</div></div>
+    <div class="card"><div class="label">Monthly contribution</div><div class="value" id="monthlyAmount">₹2,000</div></div>
+    <div class="card"><div class="label">Monthly pool</div><div class="value" id="poolAmount">₹30,000</div></div>
+    <div class="card"><div class="label">Current month</div><div class="value" id="currentMonth">1 / 15</div></div>
+  </div>
+
+  <div class="card panel">
+    <h2>Members & payment status</h2>
+    <div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Month</th><th>Payment</th><th>Date</th><th>Winner</th></tr></thead><tbody id="memberRows"></tbody></table></div>
+  </div>
+
+  <div class="card panel">
+    <h2>Monthly winners</h2>
+    <div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Pool</th><th>Date</th></tr></thead><tbody id="winnerRows"></tbody></table></div>
+  </div>
+</section>
+
+<section id="loginView" class="hidden">
+  <div class="card login">
+    <h2>Admin Login</h2>
+    <p class="notice">Use the admin password you set during setup.</p>
+    <input id="adminPassword" type="password" placeholder="Admin password" style="width:100%">
+    <div style="height:10px"></div>
+    <button class="primary" style="width:100%" onclick="login()">Login</button>
+    <div style="height:8px"></div><button style="width:100%" onclick="backHome()">Back</button>
+    <p id="loginMsg" class="notice"></p>
+  </div>
+</section>
+
+<section id="adminView" class="hidden">
+  <div class="card adminbox">
+    <div class="row" style="justify-content:space-between">
+      <div><strong>Admin dashboard</strong><div class="notice">Edit members, record payments and select each month's winner.</div></div>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="card panel">
+    <h2>Fund settings</h2>
+    <div class="row">
+      <label>Monthly amount <input id="setAmount" type="number" min="1"></label>
+      <label>Total months <input id="setMonths" type="number" min="1"></label>
+      <button class="primary" onclick="saveSettings()">Save settings</button>
+    </div>
+  </div>
+
+  <div class="card panel">
+    <h2>Members</h2>
+    <div id="adminMembers"></div>
+  </div>
+
+  <div class="card panel">
+    <h2>Record payment</h2>
+    <div class="row">
+      <select id="payMember"></select>
+      <select id="payMonth"></select>
+      <input id="payAmount" type="number" placeholder="Amount">
+      <input id="payDate" type="date">
+      <button class="primary" onclick="recordPayment()">Save payment</button>
+    </div>
+  </div>
+
+  <div class="card panel">
+    <h2>Select monthly winner</h2>
+    <div class="row">
+      <select id="winnerMonth"></select>
+      <select id="winnerMember"></select>
+      <input id="winnerDate" type="date">
+      <button class="primary" onclick="selectWinner()">Save winner</button>
+    </div>
+    <p class="notice">A member can win only once. The same month cannot have two winners.</p>
+  </div>
+</section>
+<div class="footer">Chit fund website • Replace demo Firebase settings before publishing</div>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+/* Paste your Firebase web app config here. */
+const firebaseConfig = {
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_PROJECT.firebaseapp.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_PROJECT.firebasestorage.app",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+
+const DEMO = firebaseConfig.apiKey === "PASTE_API_KEY";
+let db=null;
+if(!DEMO){ db=getFirestore(initializeApp(firebaseConfig)); }
+
+let state={
+ settings:{monthly:2000, months:15},
+ members:Array.from({length:15},(_,i)=>({id:`member${String(i+1).padStart(2,"0")}`,name:`Member ${i+1}`})),
+ payments:[], winners:[]
+};
+
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const today=()=>new Date().toISOString().slice(0,10);
+
+async function load(){
+ if(DEMO){ render(); return; }
+ const read=async(name)=>{const s=await getDocs(collection(db,name));return s.docs.map(x=>({id:x.id,...x.data()}));};
+ const [settings,members,payments,winners]=await Promise.all([read("settings"),read("members"),read("payments"),read("winners")]);
+ if(settings[0]) state.settings=settings[0];
+ if(members.length) state.members=members.sort((a,b)=>a.id.localeCompare(b.id));
+ state.payments=payments; state.winners=winners;
+ render();
+}
+function render(){
+ document.getElementById("membersCount").textContent=state.members.length;
+ document.getElementById("monthlyAmount").textContent=money(state.settings.monthly);
+ document.getElementById("poolAmount").textContent=money(state.settings.monthly*state.members.length);
+ document.getElementById("currentMonth").textContent=`${Math.min(state.settings.months, Math.max(1,state.winners.length+1))} / ${state.settings.months}`;
+
+ const rows=state.members.map((m,i)=>{
+   const p=state.payments.find(x=>x.memberId===m.id && Number(x.month)===Math.min(state.settings.months,Math.max(1,state.winners.length+1)));
+   const w=state.winners.find(x=>x.memberId===m.id);
+   return `<tr><td>${i+1}</td><td><strong>${esc(m.name)}</strong></td><td>${Math.min(state.settings.months,Math.max(1,state.winners.length+1))}</td><td><span class="badge ${p?'paid':'pending'}">${p?money(p.amount):'Pending'}</span></td><td>${p?.date||'-'}</td><td>${w?'<span class="badge winner">Won</span>':'-'}</td></tr>`;
+ }).join("");
+ document.getElementById("memberRows").innerHTML=rows||"<tr><td colspan=6>No members</td></tr>";
+ document.getElementById("winnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>{
+   const w=state.winners.find(x=>Number(x.month)===i+1);
+   return `<tr><td>${i+1}</td><td>${w?esc(state.members.find(m=>m.id===w.memberId)?.name||w.memberId):'Not selected'}</td><td>${money(state.settings.monthly*state.members.length)}</td><td>${w?.date||'-'}</td></tr>`;
+ }).join("");
+ if(document.getElementById("setAmount")) document.getElementById("setAmount").value=state.settings.monthly;
+ if(document.getElementById("setMonths")) document.getElementById("setMonths").value=state.settings.months;
+ fillSelects(); renderAdminMembers();
+}
+function fillSelects(){
+ const mem=`${state.members.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join("")}`;
+ const mons=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">Month ${i+1}</option>`).join("");
+ ["payMember","winnerMember"].forEach(id=>document.getElementById(id).innerHTML=mem);
+ ["payMonth","winnerMonth"].forEach(id=>document.getElementById(id).innerHTML=mons);
+}
+function renderAdminMembers(){
+ const box=document.getElementById("adminMembers");
+ box.innerHTML=state.members.map((m,i)=>`<div class="row" style="margin:7px 0"><b style="width:24px">${i+1}</b><input id="nm_${m.id}" value="${escAttr(m.name)}" style="flex:1"><button onclick="window.saveMember('${m.id}')">Save</button></div>`).join("");
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escAttr(s){return esc(s);}
+async function saveDoc(col,id,data){if(DEMO){Object.assign(state[col],data);return;} await setDoc(doc(db,col,id),data);}
+async function saveSettings(){
+ state.settings.monthly=Number(document.getElementById("setAmount").value)||2000;
+ state.settings.months=Number(document.getElementById("setMonths").value)||15;
+ if(!DEMO) await setDoc(doc(db,"settings","main"),state.settings);
+ render(); alert("Settings saved.");
+}
+window.saveMember=async(id)=>{
+ const name=document.getElementById("nm_"+id).value.trim()||id;
+ const m=state.members.find(x=>x.id===id); if(m)m.name=name;
+ if(!DEMO) await setDoc(doc(db,"members",id),{name});
+ render(); alert("Member saved.");
+};
+async function recordPayment(){
+ const memberId=document.getElementById("payMember").value, month=Number(document.getElementById("payMonth").value);
+ const amount=Number(document.getElementById("payAmount").value), date=document.getElementById("payDate").value||today();
+ if(!amount)return alert("Enter payment amount.");
+ const id=`${memberId}_m${month}`;
+ const item={memberId,month,amount,date};
+ const idx=state.payments.findIndex(x=>x.id===id); if(idx>=0)state.payments[idx]={id,...item};else state.payments.push({id,...item});
+ if(!DEMO) await setDoc(doc(db,"payments",id),item);
+ render(); alert("Payment saved.");
+}
+async function selectWinner(){
+ const month=Number(document.getElementById("winnerMonth").value), memberId=document.getElementById("winnerMember").value, date=document.getElementById("winnerDate").value||today();
+ if(state.winners.some(x=>Number(x.month)===month)) return alert("A winner already exists for this month.");
+ if(state.winners.some(x=>x.memberId===memberId)) return alert("This member has already won.");
+ const id=`month_${month}`, item={month,memberId,date}; state.winners.push({id,...item});
+ if(!DEMO) await setDoc(doc(db,"winners",id),item);
+ render(); alert("Winner saved.");
+}
+window.showLogin=()=>{publicView.classList.add("hidden");adminView.classList.add("hidden");loginView.classList.remove("hidden")};
+window.backHome=()=>{loginView.classList.add("hidden");publicView.classList.remove("hidden")};
+window.login=()=>{ if(document.getElementById("adminPassword").value==="1234"){loginView.classList.add("hidden");publicView.classList.add("hidden");adminView.classList.remove("hidden");render();} else document.getElementById("loginMsg").textContent="Incorrect password."; };
+window.logout=()=>{adminView.classList.add("hidden");publicView.classList.remove("hidden")};
+document.getElementById("payDate").value=today(); document.getElementById("winnerDate").value=today();
+load();
+</script>
+</body>
+</html>
