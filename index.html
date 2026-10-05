@@ -89,6 +89,7 @@ input:focus,select:focus{outline:2px solid rgba(18,107,79,.16);border-color:var(
 <section id="loginView" class="hidden">
   <div class="card login">
     <h2>Admin Login</h2>
+    <p><strong>Admin: Darshan</strong></p>
     <p class="notice">Use the admin password you set during setup.</p>
     <input id="adminPassword" type="password" placeholder="Admin password" style="width:100%">
     <div style="height:10px"></div>
@@ -102,7 +103,7 @@ input:focus,select:focus{outline:2px solid rgba(18,107,79,.16);border-color:var(
   <div class="card adminbox">
     <div class="row" style="justify-content:space-between;align-items:center">
       <div>
-        <strong>Admin dashboard</strong>
+        <strong>Admin dashboard — Darshan</strong>
         <div class="notice">Make all changes first, then use one Save button.</div>
       </div>
       <div class="row">
@@ -194,6 +195,7 @@ const firebaseConfig = {
 };
 
 const DEMO = firebaseConfig.apiKey === "PASTE_API_KEY";
+const DEMO_KEY = "chitFundDemo_v2";
 let db=null;
 if(!DEMO){ db=getFirestore(initializeApp(firebaseConfig)); }
 
@@ -210,7 +212,12 @@ const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const today=()=>new Date().toISOString().slice(0,10);
 
 async function load(){
- if(DEMO){ render(); return; }
+ if(DEMO){
+   const saved=localStorage.getItem(DEMO_KEY);
+   if(saved){ try { state=JSON.parse(saved); } catch(e) {} }
+   render();
+   return;
+ }
  const read=async(name)=>{const s=await getDocs(collection(db,name));return s.docs.map(x=>({id:x.id,...x.data()}));};
  const [settings,members,payments,winners]=await Promise.all([read("settings"),read("members"),read("payments"),read("winners")]);
  if(settings[0]) state.settings=settings[0];
@@ -339,7 +346,9 @@ async function saveAllChanges(){
     if(idx>=0) state.winners[idx]=item; else state.winners.push(item);
   }
 
-  if(!DEMO){
+  if(DEMO){
+    localStorage.setItem(DEMO_KEY,JSON.stringify(state));
+  } else {
     await setDoc(doc(db,"settings","main"),state.settings);
     for(const m of state.members) await setDoc(doc(db,"members",m.id),{name:m.name});
     for(const item of pendingPayments) await setDoc(doc(db,"payments",item.id),{memberId:item.memberId,month:item.month,amount:item.amount,date:item.date});
@@ -363,7 +372,7 @@ window.renderPublicHistory=()=>{
 };
 window.showLogin=()=>{publicView.classList.add("hidden");adminView.classList.add("hidden");loginView.classList.remove("hidden")};
 window.backHome=()=>{loginView.classList.add("hidden");publicView.classList.remove("hidden")};
-window.login=()=>{ if(document.getElementById("adminPassword").value==="1234"){loginView.classList.add("hidden");publicView.classList.add("hidden");adminView.classList.remove("hidden");render();} else document.getElementById("loginMsg").textContent="Incorrect password."; };
+window.login=()=>{ if(document.getElementById("adminPassword").value==="Kalki"){loginView.classList.add("hidden");publicView.classList.add("hidden");adminView.classList.remove("hidden");render();} else document.getElementById("loginMsg").textContent="Incorrect password."; };
 window.logout=()=>{
   if(pendingPayments.length||pendingWinners.length){
     if(!confirm("You have unsaved changes. Logout without saving?")) return;
