@@ -177,24 +177,25 @@ input:focus,select:focus{outline:2px solid rgba(18,107,79,.16);border-color:var(
     </div>
   </div>
 </section>
-<div class="footer">Chit fund website • Replace demo Firebase settings before publishing</div>
+<div class="footer">Chit fund website • Data is stored in Firebase Firestore</div>
 </main>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 /* Paste your Firebase web app config here. */
 const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_PROJECT.firebasestorage.app",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyAD-yCxGUdvZHny1cFPQM2AgVQDHKNY69Q",
+  authDomain: "darshan-chit-fund.firebaseapp.com",
+  projectId: "darshan-chit-fund",
+  storageBucket: "darshan-chit-fund.firebasestorage.app",
+  messagingSenderId: "598297563628",
+  appId: "1:598297563628:web:e3b5cd74d82944435cf0c9",
+  measurementId: "G-8Z4PX96NZH"
 };
 
-const DEMO = firebaseConfig.apiKey === "PASTE_API_KEY";
+const DEMO = false;
 const DEMO_KEY = "chitFundDemo_v2";
 let db=null;
 if(!DEMO){ db=getFirestore(initializeApp(firebaseConfig)); }
