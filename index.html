@@ -5,430 +5,352 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>15 Member Chit Fund</title>
 <style>
-:root{
-  --bg:#f4f7f3;--card:#ffffff;--text:#17231c;--muted:#66756b;
-  --primary:#126b4f;--primary2:#0b4f3b;--accent:#d6a84f;--accent-soft:#fff5dc;
-  --line:#dfe7e1;--good:#087443;--danger:#b42318;--shadow:0 8px 28px rgba(16,52,37,.08)
-}
+:root{--bg:#eef5f0;--card:#fff;--green:#075f49;--green2:#087b5d;--gold:#d5a33d;--text:#173128;--muted:#6a7b73;--line:#dbe7e0;--red:#b42318;--good:#087443}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
-header{background:linear-gradient(135deg,#073b2b 0%,#126b4f 58%,#1a7b5c 100%);color:#fff;padding:24px 16px 32px;border-radius:0 0 30px 30px;box-shadow:0 8px 28px rgba(7,59,43,.18)}
-.wrap{max-width:1080px;margin:auto;padding:0 14px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-size:22px;font-weight:850;letter-spacing:.2px}
-.sub{opacity:.82;font-size:13px;margin-top:5px}
-.logoMark{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);border-radius:11px;margin-right:9px;vertical-align:middle}
-button{border:0;border-radius:11px;padding:11px 15px;font-weight:750;cursor:pointer;transition:.15s}
-button:hover{transform:translateY(-1px)}
-button.primary{background:var(--primary);color:white}
-button.light{background:#fff;color:#0b4f3b}
-button.danger{background:#fee4e2;color:var(--danger)}
-main{padding:20px 0 45px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:var(--shadow)}
-.grid .card:first-child{border-top:4px solid var(--accent)}
-.label{font-size:12px;color:var(--muted);font-weight:650}.value{font-size:25px;font-weight:850;margin-top:6px;color:var(--primary2)}
-.panel{margin-top:17px}.panel h2{font-size:17px;margin:0 0 13px;color:var(--primary2)}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-table{width:100%;border-collapse:collapse;min-width:720px}
-th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}
-th{color:var(--muted);font-weight:750;background:#f7faf8}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
+header{background:linear-gradient(135deg,#075b46,#128260);color:#fff;border-radius:0 0 54px 54px}
+.wrap{max-width:1080px;margin:auto;padding:0 18px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:32px 0 38px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:18px;background:#ffffff1c;border:1px solid #ffffff50;display:grid;place-items:center;font-size:28px}
+h1{font-size:30px;margin:0;font-weight:850}
+.sub{font-size:18px;opacity:.9;margin-top:7px}
+button{border:0;border-radius:16px;padding:14px 20px;font-size:17px;font-weight:750;cursor:pointer}
+button:disabled{opacity:.55}
+.btn-admin{background:#fff;color:var(--green)}
+.btn-save{background:var(--gold);color:#173128;box-shadow:0 6px 16px #a77b2228}
+.btn-secondary{background:#eef0ef;color:#26352f}
+.btn-danger{background:#fff0ef;color:var(--red)}
+main{padding:18px 0 50px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 5px 18px #1643320a}
+.stat{min-height:140px}
+.label{color:var(--muted);font-size:19px;font-weight:650}
+.value{font-size:39px;font-weight:850;color:var(--green);margin-top:14px}
+.panel{margin-top:18px}
+h2{margin:0 0 18px;color:var(--green);font-size:25px}
+h3{margin:20px 0 12px}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:650px}
+th,td{padding:15px 14px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{background:#f6faf7;color:var(--muted);font-size:16px}
 tr:last-child td{border-bottom:0}
-.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:14px}
-.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}
-.paid{background:#dcfce7;color:var(--good)}.pending{background:#fff5dc;color:#9a6700}.winner{background:#f7e8b9;color:#73520a}
-input,select{padding:11px 12px;border:1px solid #cbd7cf;border-radius:10px;font-size:14px;background:#fff;color:var(--text)}
-input:focus,select:focus{outline:2px solid rgba(18,107,79,.16);border-color:var(--primary)}
-.login{max-width:430px;margin:45px auto}.hidden{display:none}
-.notice{font-size:12px;color:var(--muted);line-height:1.5}
-.adminbox{background:linear-gradient(135deg,#eff9f4,#fffaf0);border:1px solid #cfe2d7}
-.footer{color:var(--muted);font-size:12px;text-align:center;margin-top:30px}
-.sectionTitle{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.saveTop{background:linear-gradient(135deg,#d6a84f,#b98a35);color:#17231c;box-shadow:0 5px 14px rgba(185,138,53,.22)}
-@media(max-width:700px){
- .grid{grid-template-columns:repeat(2,1fr)}
- .top{align-items:flex-start}
- .value{font-size:20px}
- .brand{font-size:19px}
- .card{padding:14px}
-}
+.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#fff4d8;color:#855d10;font-weight:750}
+input,select{width:100%;padding:14px 15px;border:2px solid #d2dfd8;border-radius:14px;background:#fff;font-size:17px;color:var(--text)}
+label{display:block;font-weight:700;margin:0 0 8px}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.formrow{margin-bottom:14px}
+.adminbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap}
+.notice{padding:12px 14px;border-radius:13px;background:#f2f8f4;color:var(--muted);margin-top:10px}
+.status{font-weight:750;margin-top:12px;min-height:22px}
+.status.good{color:var(--good)} .status.bad{color:var(--red)}
+.hidden{display:none!important}
+.member-row{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;margin-bottom:10px}
+.member-no{font-weight:850;font-size:19px}
+.pending{margin-top:18px}
+.small{font-size:14px;color:var(--muted)}
+.winner{font-weight:800;color:#855d10}
+@media(max-width:650px){h1{font-size:25px}.sub{font-size:16px}.top{padding:24px 0 30px}.grid,.formgrid{grid-template-columns:1fr}.card{padding:20px}.stat{min-height:120px}.value{font-size:34px}.adminbar{align-items:flex-start}}
 </style>
 </head>
 <body>
-<header><div class="wrap top">
-  <div><div class="brand"><span class="logoMark">₹</span>15 Member Chit Fund</div><div class="sub">₹2,000 monthly • 15 months • ₹30,000 monthly pool</div></div>
-  <button class="light" onclick="showLogin()">Admin</button>
-</div></header>
+<header>
+<div class="wrap top">
+<div class="brand"><div class="logo">₹</div><div><h1>15 Member Chit Fund</h1><div id="headerSub" class="sub">₹2,000 monthly • 15 months • ₹30,000 monthly pool</div></div></div>
+<button class="btn-admin" id="adminBtn">Admin</button>
+</div>
+</header>
 
 <main class="wrap">
 <section id="publicView">
-  <div class="grid">
-    <div class="card"><div class="label">Members</div><div class="value" id="membersCount">15</div></div>
-    <div class="card"><div class="label">Monthly contribution</div><div class="value" id="monthlyAmount">₹2,000</div></div>
-    <div class="card"><div class="label">Monthly pool</div><div class="value" id="poolAmount">₹30,000</div></div>
-    <div class="card"><div class="label">Current month</div><div class="value" id="currentMonth">1 / 15</div></div>
-  </div>
+<div class="grid">
+<div class="card stat"><div class="label">Members</div><div class="value" id="statMembers">15</div></div>
+<div class="card stat"><div class="label">Monthly contribution</div><div class="value" id="statMonthly">₹2,000</div></div>
+<div class="card stat"><div class="label">Monthly pool</div><div class="value" id="statPool">₹30,000</div></div>
+<div class="card stat"><div class="label">Current month</div><div class="value" id="statCurrent">1/15</div></div>
+</div>
 
-  <div class="card panel">
-    <h2>Members & payment status</h2>
-    <div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Month</th><th>Payment</th><th>Date</th><th>Winner</th></tr></thead><tbody id="memberRows"></tbody></table></div>
-  </div>
+<div class="card panel">
+<h2>Members & payment status</h2>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Month</th><th>Payment</th><th>Date</th><th>Winner</th></tr></thead><tbody id="publicRows"></tbody></table></div>
+</div>
 
-  <div class="card panel">
-    <h2>Monthly winners</h2>
-    <div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Pool</th><th>Date</th></tr></thead><tbody id="winnerRows"></tbody></table></div>
-  </div>
-  <div class="card panel">
-    <h2>Monthly payment history</h2>
-    <div class="row"><select id="publicHistoryMonth" onchange="renderPublicHistory()"></select></div>
-    <div style="height:10px"></div>
-    <div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Payment</th><th>Date</th><th>Winner</th></tr></thead><tbody id="publicHistoryRows"></tbody></table></div>
-  </div>
+<div class="card panel">
+<h2>Monthly winners</h2>
+<div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Date</th><th>Amount</th></tr></thead><tbody id="publicWinnerRows"></tbody></table></div>
+</div>
+
+<div class="card panel">
+<h2>Monthly payment history</h2>
+<div class="formrow"><label for="historyMonth">Select month</label><select id="historyMonth"></select></div>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead><tbody id="historyRows"></tbody></table></div>
+</div>
 </section>
 
 <section id="loginView" class="hidden">
-  <div class="card login">
-    <h2>Admin Login</h2>
-    <p><strong>Admin Login</strong></p>
-    <p class="notice">Only the Firebase admin account can make changes. There is no sign-up option on this website.</p>
-    <input id="adminEmail" type="email" placeholder="Admin email" autocomplete="username" style="width:100%">
-    <div style="height:10px"></div>
-    <input id="adminPassword" type="password" placeholder="Admin password" autocomplete="current-password" style="width:100%">
-    <div style="height:10px"></div>
-    <button class="primary" style="width:100%" onclick="login()">Login</button>
-    <div style="height:8px"></div><button style="width:100%" onclick="backHome()">Back</button>
-    <p id="loginMsg" class="notice"></p>
-  </div>
+<div class="card panel">
+<h2>Admin Login</h2>
+<div class="notice">Use the Firebase admin account created for this website.</div>
+<div class="formrow" style="margin-top:16px"><label>Email</label><input id="adminEmail" type="email" value="nayakadarshan06@gmail.com" autocomplete="username"></div>
+<div class="formrow"><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password"></div>
+<button class="btn-save" id="loginBtn">Login</button>
+<button class="btn-secondary" id="backBtn" style="margin-left:8px">Back</button>
+<div id="loginStatus" class="status"></div>
+</div>
 </section>
 
 <section id="adminView" class="hidden">
-  <div class="card adminbox">
-    <div class="row" style="justify-content:space-between;align-items:center">
-      <div>
-        <strong>Admin dashboard — Darshan</strong>
-        <div class="notice">Make all changes first, then use one Save button.</div>
-      </div>
-      <div class="row">
-        <button id="saveAllBtn" class="saveTop" type="button" onclick="saveAllChanges()">💾 Save All</button>
-<div id="saveStatus" style="margin-top:10px;font-weight:700;"></div>
-        <button onclick="logout()">Logout</button>
-      </div>
-    </div>
-  </div>
+<div class="card panel">
+<div class="adminbar">
+<div><h2 style="margin-bottom:5px;color:#173128">Admin dashboard — Darshan</h2><div class="small">Make all changes first, then use one Save All button.</div></div>
+<div class="admin-actions">
+<button class="btn-save" id="saveBtn">💾 Save All</button>
+<button class="btn-secondary" id="logoutBtn">Logout</button>
+</div>
+</div>
+<div id="saveStatus" class="status"></div>
+</div>
 
-  <div class="card panel">
-    <h2>Fund settings</h2>
-    <div class="row">
-      <label>Monthly amount <input id="setAmount" type="number" min="1"></label>
-      <label>Total months <input id="setMonths" type="number" min="1"></label>
-    </div>
-  </div>
+<div class="card panel">
+<h2>Fund settings</h2>
+<div class="formgrid">
+<div class="formrow"><label>Monthly amount</label><input id="monthlyAmount" type="number" min="1"></div>
+<div class="formrow"><label>Total months</label><input id="totalMonths" type="number" min="1" max="60"></div>
+</div>
+</div>
 
-  <div class="card panel">
-    <h2>Members</h2>
-    <p class="notice">Edit all member names here. There is no Save button for individual members.</p>
-    <div id="adminMembers"></div>
-  </div>
+<div class="card panel">
+<h2>Members</h2>
+<div class="notice">Edit all member names here. There is no individual Save button.</div>
+<div id="memberInputs" style="margin-top:16px"></div>
+</div>
 
-  <div class="card panel">
-    <h2>Payment records</h2>
-    <div class="row">
-      <select id="payMonth"></select>
-      <select id="payMember"></select>
-      <input id="payAmount" type="number" placeholder="Amount">
-      <input id="payDate" type="date">
-      <button onclick="addPendingPayment()">+ Add payment</button>
-    </div>
-    <div style="height:10px"></div>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>Month</th><th>Member</th><th>Amount</th><th>Date</th><th></th></tr></thead>
-        <tbody id="pendingPaymentRows"></tbody>
-      </table>
-    </div>
-  </div>
+<div class="card panel">
+<h2>Add / update payment</h2>
+<div class="notice">Choose the same member and month again if you want to change an existing payment amount or date.</div>
+<div class="formgrid" style="margin-top:14px">
+<div class="formrow"><label>Month</label><select id="payMonth"></select></div>
+<div class="formrow"><label>Member</label><select id="payMember"></select></div>
+<div class="formrow"><label>Amount paid</label><input id="payAmount" type="number" min="0" placeholder="2000"></div>
+<div class="formrow"><label>Payment date</label><input id="payDate" type="date"></div>
+</div>
+<button class="btn-secondary" id="addPaymentBtn">Add / Update Payment</button>
+<div id="pendingPaymentBox" class="pending"></div>
+</div>
 
-  <div class="card panel">
-    <h2>Monthly winner</h2>
-    <div class="row">
-      <select id="winnerMonth"></select>
-      <select id="winnerMember"></select>
-      <input id="winnerDate" type="date">
-      <button onclick="addPendingWinner()">+ Add winner</button>
-    </div>
-    <p class="notice">A member can win only once, and each month can have only one winner.</p>
-    <div style="height:10px"></div>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>Month</th><th>Winner</th><th>Date</th><th></th></tr></thead>
-        <tbody id="pendingWinnerRows"></tbody>
-      </table>
-    </div>
-  </div>
+<div class="card panel">
+<h2>Add monthly winner</h2>
+<div class="formgrid">
+<div class="formrow"><label>Month</label><select id="winnerMonth"></select></div>
+<div class="formrow"><label>Winner</label><select id="winnerMember"></select></div>
+<div class="formrow"><label>Winner date</label><input id="winnerDate" type="date"></div>
+</div>
+<button class="btn-secondary" id="addWinnerBtn">Add to Save List</button>
+<div id="pendingWinnerBox" class="pending"></div>
+</div>
 
-  <div class="card panel">
-    <h2>Monthly records</h2>
-    <div class="row">
-      <select id="historyMonth" onchange="renderMonthlyHistory()"></select>
-    </div>
-    <div style="height:10px"></div>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>Member</th><th>Payment</th><th>Date</th><th>Winner</th></tr></thead>
-        <tbody id="monthlyHistoryRows"></tbody>
-      </table>
-    </div>
-  </div>
+<div class="card panel">
+<h2>Monthly history</h2>
+<div class="formrow"><label>Select month</label><select id="adminHistoryMonth"></select></div>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Winner</th></tr></thead><tbody id="adminHistoryRows"></tbody></table></div>
+</div>
 </section>
-<div class="footer">Chit fund website • Data is stored in Firebase Firestore</div>
 </main>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,getDocs,collection,writeBatch} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* Paste your Firebase web app config here. */
-const firebaseConfig = {
-  apiKey: "AIzaSyAD-yCxGUdvZHny1cFPQM2AgVQDHKNY69Q",
-  authDomain: "darshan-chit-fund.firebaseapp.com",
-  projectId: "darshan-chit-fund",
-  storageBucket: "darshan-chit-fund.firebasestorage.app",
-  messagingSenderId: "598297563628",
-  appId: "1:598297563628:web:e3b5cd74d82944435cf0c9",
-  measurementId: "G-8Z4PX96NZH"
+const firebaseConfig={
+ apiKey:"AIzaSyAD-yCxGUdvZHny1cFPQM2AgVQDHKNY69Q",
+ authDomain:"darshan-chit-fund.firebaseapp.com",
+ projectId:"darshan-chit-fund",
+ storageBucket:"darshan-chit-fund.firebasestorage.app",
+ messagingSenderId:"598297563628",
+ appId:"1:598297563628:web:e3b5cd74d82944435cf0c9",
+ measurementId:"G-8Z4PX96NZH"
 };
 
-const DEMO = false;
-const DEMO_KEY = "chitFundDemo_v2";
-let db=null, auth=null;
-if(!DEMO){
-  const app=initializeApp(firebaseConfig);
-  db=getFirestore(app);
-  auth=getAuth(app);
-}
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const DEFAULT_SETTINGS={monthly:2000,months:15};
+const DEFAULT_MEMBERS=Array.from({length:15},(_,i)=>({id:String(i+1),name:`Member ${i+1}`}));
+let state={settings:{...DEFAULT_SETTINGS},members:[...DEFAULT_MEMBERS],payments:[],winners:[]};
+let pendingPayments=[],pendingWinners=[],isAdmin=false;
 
-let state={
- settings:{monthly:2000, months:15},
- members:Array.from({length:15},(_,i)=>({id:`member${String(i+1).padStart(2,"0")}`,name:`Member ${i+1}`})),
- payments:[], winners:[]
-};
-let pendingPayments=[];
-let pendingWinners=[];
-
-
+const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
-const today=()=>new Date().toISOString().slice(0,10);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const currentMonth=()=>Math.min(state.settings.months,Math.max(1,Math.max(0,...state.payments.map(x=>Number(x.month)),...state.winners.map(x=>Number(x.month)))+1));
 
-async function load(){
- if(DEMO){
-   const saved=localStorage.getItem(DEMO_KEY);
-   if(saved){ try { state=JSON.parse(saved); } catch(e) {} }
-   render();
-   return;
- }
- const read=async(name)=>{const s=await getDocs(collection(db,name));return s.docs.map(x=>({id:x.id,...x.data()}));};
- const [settings,members,payments,winners]=await Promise.all([read("settings"),read("members"),read("payments"),read("winners")]);
- if(settings[0]) state.settings=settings[0];
- if(members.length) state.members=members.sort((a,b)=>a.id.localeCompare(b.id));
- state.payments=payments; state.winners=winners;
- render();
+async function loadData(){
+ try{
+   const s=await getDoc(doc(db,"settings","main"));
+   if(s.exists()) state.settings={...DEFAULT_SETTINGS,...s.data()};
+   const ms=await getDocs(collection(db,"members"));
+   if(!ms.empty) state.members=ms.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>Number(a.id)-Number(b.id));
+   const ps=await getDocs(collection(db,"payments"));
+   state.payments=ps.docs.map(d=>({id:d.id,...d.data()}));
+   const ws=await getDocs(collection(db,"winners"));
+   state.winners=ws.docs.map(d=>({id:d.id,...d.data()}));
+ }catch(e){console.error(e); if(isAdmin) showSaveStatus("❌ Could not load Firebase data: "+(e.message||e),false);}
+ renderAll();
 }
-function render(){
- document.getElementById("membersCount").textContent=state.members.length;
- document.getElementById("monthlyAmount").textContent=money(state.settings.monthly);
- document.getElementById("poolAmount").textContent=money(state.settings.monthly*state.members.length);
- document.getElementById("currentMonth").textContent=`${Math.min(state.settings.months, Math.max(1,state.winners.length+1))} / ${state.settings.months}`;
 
- const rows=state.members.map((m,i)=>{
-   const p=state.payments.find(x=>x.memberId===m.id && Number(x.month)===Math.min(state.settings.months,Math.max(1,state.winners.length+1)));
-   const w=state.winners.find(x=>x.memberId===m.id);
-   return `<tr><td>${i+1}</td><td><strong>${esc(m.name)}</strong></td><td>${Math.min(state.settings.months,Math.max(1,state.winners.length+1))}</td><td><span class="badge ${p?'paid':'pending'}">${p?money(p.amount):'Pending'}</span></td><td>${p?.date||'-'}</td><td>${w?'<span class="badge winner">Won</span>':'-'}</td></tr>`;
+function renderHeader(){
+ $("headerSub").textContent=`${money(state.settings.monthly)} monthly • ${state.settings.months} months • ${money(state.settings.monthly*state.members.length)} monthly pool`;
+ $("statMembers").textContent=state.members.length;
+ $("statMonthly").textContent=money(state.settings.monthly);
+ $("statPool").textContent=money(state.settings.monthly*state.members.length);
+ $("statCurrent").textContent=`${currentMonth()}/${state.settings.months}`;
+}
+
+function renderPublic(){
+ const cm=currentMonth();
+ $("publicRows").innerHTML=state.members.map((m,i)=>{
+   const p=state.payments.find(x=>x.memberId===m.id&&Number(x.month)===cm);
+   const w=state.winners.find(x=>x.memberId===m.id&&Number(x.month)===cm);
+   return `<tr><td>${i+1}</td><td><b>${esc(m.name)}</b></td><td>${cm}</td><td>${p?money(p.amount):'<span class="badge">Pending</span>'}</td><td>${esc(p?.date||"—")}</td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
  }).join("");
- document.getElementById("memberRows").innerHTML=rows||"<tr><td colspan=6>No members</td></tr>";
- document.getElementById("winnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>{
-   const w=state.winners.find(x=>Number(x.month)===i+1);
-   return `<tr><td>${i+1}</td><td>${w?esc(state.members.find(m=>m.id===w.memberId)?.name||w.memberId):'Not selected'}</td><td>${money(state.settings.monthly*state.members.length)}</td><td>${w?.date||'-'}</td></tr>`;
+ $("publicWinnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>i+1).map(m=>{
+   const w=state.winners.find(x=>Number(x.month)===m);
+   return `<tr><td>${m}</td><td>${w?esc(state.members.find(x=>x.id===w.memberId)?.name||"Unknown"):"—"}</td><td>${esc(w?.date||"—")}</td><td>${w?money(state.settings.monthly*state.members.length):"—"}</td></tr>`;
  }).join("");
- if(document.getElementById("setAmount")) document.getElementById("setAmount").value=state.settings.monthly;
- if(document.getElementById("setMonths")) document.getElementById("setMonths").value=state.settings.months;
- fillSelects(); renderAdminMembers();
+ populateHistorySelect($("historyMonth"),currentMonth());
+ renderPublicHistory();
+}
+
+function populateHistorySelect(sel,value){
+ const old=Number(sel.value||value||1);
+ sel.innerHTML=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">Month ${i+1}</option>`).join("");
+ sel.value=String(Math.min(state.settings.months,Math.max(1,old)));
+}
+function renderPublicHistory(){
+ const month=Number($("historyMonth").value||1);
+ $("historyRows").innerHTML=state.members.map((m,i)=>{
+   const p=state.payments.find(x=>x.memberId===m.id&&Number(x.month)===month);
+   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):"—"}</td><td>${esc(p?.date||"—")}</td><td>${p?'<span class="badge">Paid</span>':'<span class="badge">Pending</span>'}</td></tr>`;
+ }).join("");
+}
+
+function renderAdmin(){
+ $("monthlyAmount").value=state.settings.monthly;
+ $("totalMonths").value=state.settings.months;
+ $("memberInputs").innerHTML=state.members.map((m,i)=>`<div class="member-row"><div class="member-no">${i+1}</div><input class="member-name" data-id="${esc(m.id)}" value="${esc(m.name)}"></div>`).join("");
+ populateAdminSelects();
  renderPending();
+ renderAdminHistory();
 }
-function fillSelects(){
- const mem=`${state.members.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join("")}`;
- const mons=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">Month ${i+1}</option>`).join("");
- ["payMember","winnerMember"].forEach(id=>document.getElementById(id).innerHTML=mem);
- ["payMonth","winnerMonth","historyMonth"].forEach(id=>document.getElementById(id).innerHTML=mons);
+function populateAdminSelects(){
+ const monthOpts=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">Month ${i+1}</option>`).join("");
+ ["payMonth","winnerMonth","adminHistoryMonth"].forEach(id=>{
+   const el=$(id),old=el.value||"1";el.innerHTML=monthOpts;el.value=String(Math.min(state.settings.months,Math.max(1,Number(old)||1)));
+ });
+ $("payMember").innerHTML=state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
+ $("winnerMember").innerHTML=state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
 }
-function renderAdminMembers(){
- const box=document.getElementById("adminMembers");
- box.innerHTML=state.members.map((m,i)=>`<div class="row" style="margin:7px 0"><b style="width:24px">${i+1}</b><input id="nm_${m.id}" value="${escAttr(m.name)}" oninput="window.stageMember('${m.id}',this.value)" style="flex:1"></div>`).join("");
-}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function escAttr(s){return esc(s);}
-async function saveDoc(col,id,data){if(DEMO){Object.assign(state[col],data);return;} await setDoc(doc(db,col,id),data);}
-async function saveSettings(){
- state.settings.monthly=Number(document.getElementById("setAmount").value)||2000;
- state.settings.months=Number(document.getElementById("setMonths").value)||15;
- if(!DEMO) await setDoc(doc(db,"settings","main"),state.settings);
- render(); alert("Settings saved.");
-}
-window.stageMember=(id,name)=>{
-  const m=state.members.find(x=>x.id===id);
-  if(m) m.name=name.trim()||`Member ${id.replace("member","")}`;
-};
-
-function addPendingPayment(){
-  const memberId=document.getElementById("payMember").value;
-  const month=Number(document.getElementById("payMonth").value);
-  const amount=Number(document.getElementById("payAmount").value);
-  const date=document.getElementById("payDate").value||today();
-  if(!amount) return alert("Enter payment amount.");
-  const id=`${memberId}_m${month}`;
-  const item={id,memberId,month,amount,date};
-  const idx=pendingPayments.findIndex(x=>x.id===id);
-  if(idx>=0) pendingPayments[idx]=item; else pendingPayments.push(item);
-  document.getElementById("payAmount").value="";
-  renderPending();
-}
-
-window.removePendingPayment=(id)=>{
-  pendingPayments=pendingPayments.filter(x=>x.id!==id);
-  renderPending();
-};
-
-function addPendingWinner(){
-  const month=Number(document.getElementById("winnerMonth").value);
-  const memberId=document.getElementById("winnerMember").value;
-  const date=document.getElementById("winnerDate").value||today();
-  const existing=state.winners.find(x=>Number(x.month)===month) || pendingWinners.find(x=>Number(x.month)===month);
-  if(existing) return alert("A winner already exists for this month.");
-  if(state.winners.some(x=>x.memberId===memberId) || pendingWinners.some(x=>x.memberId===memberId))
-    return alert("This member has already won.");
-  pendingWinners.push({id:`month_${month}`,month,memberId,date});
-  renderPending();
-}
-
-window.removePendingWinner=(id)=>{
-  pendingWinners=pendingWinners.filter(x=>x.id!==id);
-  renderPending();
-};
-
 function renderPending(){
-  document.getElementById("pendingPaymentRows").innerHTML =
-    pendingPayments.length ? pendingPayments.map(x=>`<tr><td>${x.month}</td><td>${esc(state.members.find(m=>m.id===x.memberId)?.name||x.memberId)}</td><td>${money(x.amount)}</td><td>${x.date}</td><td><button class="danger" onclick="removePendingPayment('${x.id}')">Remove</button></td></tr>`).join("")
-    : `<tr><td colspan="5">No new payments yet.</td></tr>`;
-  document.getElementById("pendingWinnerRows").innerHTML =
-    pendingWinners.length ? pendingWinners.map(x=>`<tr><td>${x.month}</td><td>${esc(state.members.find(m=>m.id===x.memberId)?.name||x.memberId)}</td><td>${x.date}</td><td><button class="danger" onclick="removePendingWinner('${x.id}')">Remove</button></td></tr>`).join("")
-    : `<tr><td colspan="4">No new winners yet.</td></tr>`;
-  renderMonthlyHistory();
+ $("pendingPaymentBox").innerHTML=pendingPayments.length?`<h3>Pending payments</h3><div class="table-scroll"><table><tr><th>Month</th><th>Member</th><th>Amount</th><th>Date</th><th></th></tr>${pendingPayments.map((p,i)=>`<tr><td>${p.month}</td><td>${esc(state.members.find(m=>m.id===p.memberId)?.name||"")}</td><td>${money(p.amount)}</td><td>${esc(p.date||"—")}</td><td><button class="btn-danger" data-rm-pay="${i}">Remove</button></td></tr>`).join("")}</table></div>`:"";
+ $("pendingWinnerBox").innerHTML=pendingWinners.length?`<h3>Pending winners</h3><div class="table-scroll"><table><tr><th>Month</th><th>Winner</th><th>Date</th><th></th></tr>${pendingWinners.map((w,i)=>`<tr><td>${w.month}</td><td>${esc(state.members.find(m=>m.id===w.memberId)?.name||"")}</td><td>${esc(w.date||"—")}</td><td><button class="btn-danger" data-rm-win="${i}">Remove</button></td></tr>`).join("")}</table></div>`:"";
+ document.querySelectorAll("[data-rm-pay]").forEach(b=>b.onclick=()=>{pendingPayments.splice(Number(b.dataset.rmPay),1);renderPending();renderAdminHistory()});
+ document.querySelectorAll("[data-rm-win]").forEach(b=>b.onclick=()=>{pendingWinners.splice(Number(b.dataset.rmWin),1);renderPending();renderAdminHistory()});
 }
-
-function renderMonthlyHistory(){
-  const sel=document.getElementById("historyMonth");
-  if(!sel) return;
-  const month=Number(sel.value||1);
-  const rows=state.members.map(m=>{
-    const p=[...state.payments,...pendingPayments].find(x=>x.memberId===m.id && Number(x.month)===month);
-    const w=[...state.winners,...pendingWinners].find(x=>x.memberId===m.id && Number(x.month)===month);
-    return `<tr><td>${esc(m.name)}</td><td>${p?money(p.amount):'<span class="badge pending">Pending</span>'}</td><td>${p?.date||'-'}</td><td>${w?'<span class="badge winner">Winner</span>':'-'}</td></tr>`;
-  }).join("");
-  document.getElementById("monthlyHistoryRows").innerHTML=rows;
+function renderAdminHistory(){
+ const month=Number($("adminHistoryMonth").value||1);
+ $("adminHistoryRows").innerHTML=state.members.map((m,i)=>{
+   const p=[...state.payments,...pendingPayments].find(x=>x.memberId===m.id&&Number(x.month)===month);
+   const w=[...state.winners,...pendingWinners].find(x=>x.memberId===m.id&&Number(x.month)===month);
+   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):"—"}</td><td>${esc(p?.date||"—")}</td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
+ }).join("");
 }
+function renderAll(){renderHeader();renderPublic();if(isAdmin)renderAdmin()}
+function showSaveStatus(msg,good){const el=$("saveStatus");el.textContent=msg;el.className="status "+(good?"good":"bad")}
 
-async function saveAllChanges(){
-  state.settings.monthly=Number(document.getElementById("setAmount").value)||2000;
-  state.settings.months=Number(document.getElementById("setMonths").value)||15;
+$("adminBtn").onclick=()=>{$("publicView").classList.add("hidden");$("adminView").classList.add("hidden");$("loginView").classList.remove("hidden");$("loginStatus").textContent=""};
+$("backBtn").onclick=()=>{$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden")};
+$("historyMonth").onchange=renderPublicHistory;
+$("adminHistoryMonth").onchange=renderAdminHistory;
 
-  // Keep only valid month records after settings changes.
-  pendingPayments=pendingPayments.filter(x=>x.month<=state.settings.months);
-  pendingWinners=pendingWinners.filter(x=>x.month<=state.settings.months);
-
-  // Apply pending records to local state.
-  for(const item of pendingPayments){
-    const idx=state.payments.findIndex(x=>x.id===item.id);
-    if(idx>=0) state.payments[idx]=item; else state.payments.push(item);
-  }
-  for(const item of pendingWinners){
-    const idx=state.winners.findIndex(x=>x.id===item.id);
-    if(idx>=0) state.winners[idx]=item; else state.winners.push(item);
-  }
-
-  try{
-    if(DEMO){
-      localStorage.setItem(DEMO_KEY,JSON.stringify(state));
-    } else {
-      // Firestore rules currently control access. Do not block saving based on local auth state.
-      await setDoc(doc(db,"settings","main"),state.settings);
-      for(const m of state.members) await setDoc(doc(db,"members",m.id),{name:m.name});
-      for(const item of pendingPayments) await setDoc(doc(db,"payments",item.id),{memberId:item.memberId,month:item.month,amount:item.amount,date:item.date});
-      for(const item of pendingWinners) await setDoc(doc(db,"winners",item.id),{month:item.month,memberId:item.memberId,date:item.date});
-    }
-    pendingPayments=[]; pendingWinners=[];
-    render();
-    const status=document.getElementById("saveStatus");
-    if(status){ status.textContent="✅ All changes saved successfully to Firebase."; status.style.color="#087f5b"; }
-    alert("All changes saved successfully to Firebase.");
-  }catch(e){
-    const status=document.getElementById("saveStatus");
-    if(status){ status.textContent="❌ Save failed: " + (e.message || "Please check Firebase."); status.style.color="#c92a2a"; }
-    alert("Save failed: " + (e.message || "Please check Firebase."));
-  }
-}
-
-window.saveAllChanges=saveAllChanges;
-window.addPendingPayment=addPendingPayment;
-window.addPendingWinner=addPendingWinner;
-
-window.renderPublicHistory=()=>{
-  const month=Number(document.getElementById("publicHistoryMonth")?.value||1);
-  const rows=state.members.map((m,i)=>{
-    const p=state.payments.find(x=>x.memberId===m.id && Number(x.month)===month);
-    const w=state.winners.find(x=>x.memberId===m.id && Number(x.month)===month);
-    return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):'<span class="badge pending">Pending</span>'}</td><td>${p?.date||'-'}</td><td>${w?'<span class="badge winner">Winner</span>':'-'}</td></tr>`;
-  }).join("");
-  const el=document.getElementById("publicHistoryRows");
-  if(el) el.innerHTML=rows;
+$("loginBtn").onclick=async()=>{
+ const email=$("adminEmail").value.trim(),password=$("adminPassword").value;
+ if(!email||!password){$("loginStatus").textContent="Enter email and password.";return}
+ $("loginBtn").disabled=true;$("loginStatus").textContent="Logging in...";
+ try{await signInWithEmailAndPassword(auth,email,password);$("loginStatus").textContent=""}
+ catch(e){$("loginStatus").textContent="❌ Login failed: "+(e.message||e);$("loginBtn").disabled=false}
 };
-window.showLogin=()=>{publicView.classList.add("hidden");adminView.classList.add("hidden");loginView.classList.remove("hidden")};
-window.backHome=()=>{loginView.classList.add("hidden");publicView.classList.remove("hidden")};
-window.login=async()=>{
-  const email=document.getElementById("adminEmail").value.trim();
-  const password=document.getElementById("adminPassword").value;
-  const msg=document.getElementById("loginMsg");
-  msg.textContent="";
-  if(!email || !password){ msg.textContent="Enter your admin email and password."; return; }
-  try{
-    if(DEMO){ throw new Error("Demo mode is disabled."); }
-    await signInWithEmailAndPassword(auth,email,password);
-    loginView.classList.add("hidden");
-    publicView.classList.add("hidden");
-    adminView.classList.remove("hidden");
-    await load();
-  }catch(e){
-    msg.textContent = e.code === "auth/invalid-credential" ? "Incorrect email or password." : (e.message || "Login failed.");
-  }
+
+onAuthStateChanged(auth,user=>{
+ isAdmin=!!user;
+ if(user){
+   $("loginView").classList.add("hidden");$("publicView").classList.add("hidden");$("adminView").classList.remove("hidden");
+   loadData();
+ }else{
+   $("adminView").classList.add("hidden");$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden");
+   loadData();
+ }
+});
+
+$("logoutBtn").onclick=async()=>{
+ if(pendingPayments.length||pendingWinners.length){if(!confirm("You have unsaved changes. Logout anyway?"))return}
+ pendingPayments=[];pendingWinners=[];await signOut(auth);
 };
-window.logout=async()=>{
-  if(pendingPayments.length||pendingWinners.length){
-    if(!confirm("You have unsaved changes. Logout without saving?")) return;
-  }
-  pendingPayments=[]; pendingWinners=[];
-  if(!DEMO && auth){ try{ await signOut(auth); }catch(e){} }
-  adminView.classList.add("hidden");publicView.classList.remove("hidden");
+
+$("addPaymentBtn").onclick=()=>{
+ const month=Number($("payMonth").value),memberId=$("payMember").value,amount=Number($("payAmount").value),date=$("payDate").value;
+ if(!Number.isFinite(amount)||amount<0){alert("Enter payment amount.");return}
+ const id=`${memberId}_m${month}`,item={id,memberId,month,amount,date};
+ const idx=pendingPayments.findIndex(x=>x.id===id);
+ if(idx>=0)pendingPayments[idx]=item;else pendingPayments.push(item);
+ $("payAmount").value="";$("payDate").value="";renderPending();renderAdminHistory();
 };
-document.getElementById("payDate").value=today(); document.getElementById("winnerDate").value=today();
-if(!DEMO && auth){
-  onAuthStateChanged(auth, user=>{
-    if(!user){
-      adminView.classList.add("hidden");
-      if(!loginView.classList.contains("hidden")) return;
-      publicView.classList.remove("hidden");
-    }
-  });
-}
-load();
+
+$("addWinnerBtn").onclick=()=>{
+ const month=Number($("winnerMonth").value),memberId=$("winnerMember").value,date=$("winnerDate").value;
+ if(state.winners.some(x=>Number(x.month)===month)||pendingWinners.some(x=>Number(x.month)===month)){alert("A winner already exists for this month.");return}
+ if(state.winners.some(x=>x.memberId===memberId)||pendingWinners.some(x=>x.memberId===memberId)){alert("This member has already won.");return}
+ pendingWinners.push({id:`month_${month}`,month,memberId,date});renderPending();renderAdminHistory();
+};
+
+$("totalMonths").onchange=()=>{
+ const n=Math.max(1,Math.min(60,Number($("totalMonths").value)||15));
+ $("totalMonths").value=n;populateAdminSelects();renderPending();renderAdminHistory();
+};
+
+$("saveBtn").onclick=async()=>{
+ try{
+   $("saveBtn").disabled=true;
+   showSaveStatus("Saving... please wait.",true);
+   const monthly=Math.max(1,Number($("monthlyAmount").value)||2000);
+   const months=Math.max(1,Math.min(60,Number($("totalMonths").value)||15));
+   const members=[...document.querySelectorAll(".member-name")].map((el,i)=>({id:el.dataset.id||String(i+1),name:el.value.trim()||`Member ${i+1}`}));
+   const validPayments=pendingPayments.filter(x=>Number(x.month)<=months);
+   const validWinners=pendingWinners.filter(x=>Number(x.month)<=months);
+
+   const batch=writeBatch(db);
+   batch.set(doc(db,"settings","main"),{monthly,months});
+   members.forEach(m=>batch.set(doc(db,"members",m.id),m));
+   validPayments.forEach(p=>batch.set(doc(db,"payments",p.id),p));
+   validWinners.forEach(w=>batch.set(doc(db,"winners",w.id),w));
+   await batch.commit();
+
+   state.settings={monthly,months};state.members=members;
+   for(const p of validPayments){const i=state.payments.findIndex(x=>x.id===p.id);if(i>=0)state.payments[i]=p;else state.payments.push(p)}
+   for(const w of validWinners){const i=state.winners.findIndex(x=>x.id===w.id);if(i>=0)state.winners[i]=w;else state.winners.push(w)}
+   pendingPayments=[];pendingWinners=[];
+   renderAll();
+   showSaveStatus("✅ All changes saved successfully to Firebase.",true);
+   alert("✅ All changes saved successfully to Firebase.");
+ }catch(e){
+   console.error(e);
+   showSaveStatus("❌ Save failed: "+(e.message||e),false);
+   alert("❌ Save failed. "+(e.message||e));
+ }finally{$("saveBtn").disabled=false}
+};
+
+renderAll();
 </script>
 </body>
 </html>
