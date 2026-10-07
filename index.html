@@ -5,44 +5,51 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>15 Member Chit Fund</title>
 <style>
-:root{--bg:#eef5f0;--card:#fff;--green:#075f49;--green2:#087b5d;--gold:#d5a33d;--text:#173128;--muted:#6a7b73;--line:#dbe7e0;--red:#b42318;--good:#087443}
+:root{--bg:#eef4ef;--card:#fff;--green:#075b46;--green2:#0c805e;--gold:#d9a62e;--pitch:#e9f4df;--text:#173128;--muted:#65776e;--line:#d8e5dc;--red:#b42318;--good:#087443}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
-header{background:linear-gradient(135deg,#075b46,#128260);color:#fff;border-radius:0 0 54px 54px}
-.wrap{max-width:1080px;margin:auto;padding:0 18px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:32px 0 38px}
+header{background:linear-gradient(135deg,#064d3c,#0b7959 65%,#176b49);color:#fff;border-radius:0 0 52px 52px;position:relative;overflow:hidden}
+header:after{content:"🏏  🏏  🏏";position:absolute;right:20px;bottom:8px;opacity:.13;font-size:54px;letter-spacing:12px}
+.wrap{max-width:1080px;margin:auto;padding:0 18px;position:relative;z-index:1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:28px 0 36px}
 .brand{display:flex;align-items:center;gap:14px}
-.logo{width:58px;height:58px;border-radius:18px;background:#ffffff1c;border:1px solid #ffffff50;display:grid;place-items:center;font-size:28px}
+.logo{width:60px;height:60px;border-radius:18px;background:#ffffff1c;border:1px solid #ffffff50;display:grid;place-items:center;font-size:29px}
 h1{font-size:30px;margin:0;font-weight:850}
-.sub{font-size:18px;opacity:.9;margin-top:7px}
-button{border:0;border-radius:16px;padding:14px 20px;font-size:17px;font-weight:750;cursor:pointer}
+.sub{font-size:17px;opacity:.9;margin-top:7px}
+button{border:0;border-radius:14px;padding:12px 17px;font-size:16px;font-weight:800;cursor:pointer}
 button:disabled{opacity:.55}
 .btn-admin{background:#fff;color:var(--green)}
 .btn-save{background:var(--gold);color:#173128;box-shadow:0 6px 16px #a77b2228}
-.btn-secondary{background:#eef0ef;color:#26352f}
+.btn-secondary{background:#edf1ee;color:#26352f}
 .btn-danger{background:#fff0ef;color:var(--red)}
+.btn-green{background:#0b7b59;color:#fff}
+.btn-none{background:#eef0ef;color:#46534e}
+.btn-received{background:#0b7b59;color:#fff;padding:9px 13px}
+.btn-small{padding:9px 12px;font-size:14px}
 main{padding:18px 0 50px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 5px 18px #1643320a}
 .stat{min-height:140px}
 .label{color:var(--muted);font-size:19px;font-weight:650}
-.value{font-size:39px;font-weight:850;color:var(--green);margin-top:14px}
+.value{font-size:34px;font-weight:850;color:var(--green);margin-top:14px}
 .panel{margin-top:18px}
 h2{margin:0 0 18px;color:var(--green);font-size:25px}
 h3{margin:20px 0 12px}
 .table-scroll{overflow-x:auto}
-table{width:100%;border-collapse:separate;border-spacing:0;min-width:650px}
-th,td{padding:15px 14px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-th{background:#f6faf7;color:var(--muted);font-size:16px}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:700px}
+th,td{padding:14px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{background:#f5faf6;color:var(--muted);font-size:15px}
 tr:last-child td{border-bottom:0}
-.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#fff4d8;color:#855d10;font-weight:750}
-input,select{width:100%;padding:14px 15px;border:2px solid #d2dfd8;border-radius:14px;background:#fff;font-size:17px;color:var(--text)}
+.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#fff4d8;color:#855d10;font-weight:800}
+.badge-received{display:inline-block;padding:7px 12px;border-radius:999px;background:#e4f6ea;color:#087443;font-weight:800}
+.badge-none{display:inline-block;padding:7px 12px;border-radius:999px;background:#eef0ef;color:#68736e;font-weight:800}
+input,select{width:100%;padding:13px 14px;border:2px solid #d2dfd8;border-radius:13px;background:#fff;font-size:17px;color:var(--text)}
 label{display:block;font-weight:700;margin:0 0 8px}
 .formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .formrow{margin-bottom:14px}
 .adminbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .admin-actions{display:flex;gap:10px;flex-wrap:wrap}
-.notice{padding:12px 14px;border-radius:13px;background:#f2f8f4;color:var(--muted);margin-top:10px}
+.notice{padding:12px 14px;border-radius:13px;background:var(--pitch);color:var(--muted);margin-top:10px}
 .status{font-weight:750;margin-top:12px;min-height:22px}
 .status.good{color:var(--good)} .status.bad{color:var(--red)}
 .hidden{display:none!important}
@@ -50,14 +57,18 @@ label{display:block;font-weight:700;margin:0 0 8px}
 .member-no{font-weight:850;font-size:19px}
 .pending{margin-top:18px}
 .small{font-size:14px;color:var(--muted)}
-.winner{font-weight:800;color:#855d10}
-@media(max-width:650px){h1{font-size:25px}.sub{font-size:16px}.top{padding:24px 0 30px}.grid,.formgrid{grid-template-columns:1fr}.card{padding:20px}.stat{min-height:120px}.value{font-size:34px}.adminbar{align-items:flex-start}}
+.winner{font-weight:850;color:#855d10}
+.history-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.history-title{font-size:20px;font-weight:850;color:var(--green);text-align:center;flex:1}
+.winner-actions{display:flex;gap:7px;flex-wrap:wrap}
+.cricket-strip{display:flex;gap:8px;align-items:center;color:#e9f4df;font-weight:800;font-size:14px;margin-top:10px}
+@media(max-width:650px){h1{font-size:24px}.sub{font-size:15px}.top{padding:22px 0 30px}.grid,.formgrid{grid-template-columns:1fr}.card{padding:20px}.stat{min-height:115px}.value{font-size:31px}.adminbar{align-items:flex-start}.history-nav button{padding:10px 12px;font-size:14px}}
 </style>
 </head>
 <body>
 <header>
 <div class="wrap top">
-<div class="brand"><div class="logo">₹</div><div><h1>15 Member Chit Fund</h1><div id="headerSub" class="sub">₹2,000 monthly • 15 months • ₹30,000 monthly pool</div></div></div>
+<div class="brand"><div class="logo">🏏</div><div><h1>15 Member Chit Fund</h1><div id="headerSub" class="sub">₹2,000 monthly • 15 months • ₹30,000 monthly pool</div><div class="cricket-strip">🏏 Cricket theme • Fair play • Monthly winner</div></div></div>
 <button class="btn-admin" id="adminBtn">Admin</button>
 </div>
 </header>
@@ -68,7 +79,7 @@ label{display:block;font-weight:700;margin:0 0 8px}
 <div class="card stat"><div class="label">Members</div><div class="value" id="statMembers">15</div></div>
 <div class="card stat"><div class="label">Monthly contribution</div><div class="value" id="statMonthly">₹2,000</div></div>
 <div class="card stat"><div class="label">Monthly pool</div><div class="value" id="statPool">₹30,000</div></div>
-<div class="card stat"><div class="label">Current month</div><div class="value" id="statCurrent">1/15</div></div>
+<div class="card stat"><div class="label">Current month</div><div class="value" id="statCurrent">Oct 2026</div></div>
 </div>
 
 <div class="card panel">
@@ -77,13 +88,17 @@ label{display:block;font-weight:700;margin:0 0 8px}
 </div>
 
 <div class="card panel">
-<h2>Monthly winners</h2>
+<h2>Monthly winners 🏆</h2>
 <div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Date</th><th>Amount</th></tr></thead><tbody id="publicWinnerRows"></tbody></table></div>
 </div>
 
 <div class="card panel">
-<h2>Monthly payment history</h2>
-<div class="formrow"><label for="historyMonth">Select month</label><select id="historyMonth"></select></div>
+<h2>Monthly payment history 🏏</h2>
+<div class="history-nav">
+<button class="btn-secondary" id="historyPrev">◀ Previous</button>
+<div class="history-title" id="historyTitle">Oct 2026</div>
+<button class="btn-secondary" id="historyNext">Next ▶</button>
+</div>
 <div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead><tbody id="historyRows"></tbody></table></div>
 </div>
 </section>
@@ -103,11 +118,8 @@ label{display:block;font-weight:700;margin:0 0 8px}
 <section id="adminView" class="hidden">
 <div class="card panel">
 <div class="adminbar">
-<div><h2 style="margin-bottom:5px;color:#173128">Admin dashboard — Darshan</h2><div class="small">Make all changes first, then use one Save All button.</div></div>
-<div class="admin-actions">
-<button class="btn-save" id="saveBtn">💾 Save All</button>
-<button class="btn-secondary" id="logoutBtn">Logout</button>
-</div>
+<div><h2 style="margin-bottom:5px;color:#173128">Admin dashboard — Darshan 🏏</h2><div class="small">Make all changes first, then use one Save All button.</div></div>
+<div class="admin-actions"><button class="btn-save" id="saveBtn">💾 Save All</button><button class="btn-secondary" id="logoutBtn">Logout</button></div>
 </div>
 <div id="saveStatus" class="status"></div>
 </div>
@@ -117,7 +129,9 @@ label{display:block;font-weight:700;margin:0 0 8px}
 <div class="formgrid">
 <div class="formrow"><label>Monthly amount</label><input id="monthlyAmount" type="number" min="1"></div>
 <div class="formrow"><label>Total months</label><input id="totalMonths" type="number" min="1" max="60"></div>
+<div class="formrow"><label>First month</label><input id="startMonth" type="month"></div>
 </div>
+<div class="notice">Month 1 will be shown using the first month above. Example: <b>Oct 2026</b>, then Nov 2026, Dec 2026...</div>
 </div>
 
 <div class="card panel">
@@ -127,33 +141,43 @@ label{display:block;font-weight:700;margin:0 0 8px}
 </div>
 
 <div class="card panel">
-<h2>Add / update payment</h2>
-<div class="notice">Choose the same member and month again if you want to change an existing payment amount or date.</div>
+<h2>Payment received 🏏</h2>
+<div class="notice">If a member has paid, use <b>Received</b>. It stages the payment for the single Save All button.</div>
 <div class="formgrid" style="margin-top:14px">
 <div class="formrow"><label>Month</label><select id="payMonth"></select></div>
 <div class="formrow"><label>Member</label><select id="payMember"></select></div>
-<div class="formrow"><label>Amount paid</label><input id="payAmount" type="number" min="0" placeholder="2000"></div>
+<div class="formrow"><label>Amount received</label><input id="payAmount" type="number" min="0" placeholder="2000"></div>
 <div class="formrow"><label>Payment date</label><input id="payDate" type="date"></div>
 </div>
-<button class="btn-secondary" id="addPaymentBtn">Add / Update Payment</button>
+<button class="btn-received" id="addPaymentBtn">✓ Received</button>
 <div id="pendingPaymentBox" class="pending"></div>
 </div>
 
 <div class="card panel">
-<h2>Add monthly winner</h2>
-<div class="formgrid">
+<h2>Winner list 🏆</h2>
+<div class="notice">Use <b>Add</b> to stage a winner, <b>Remove</b> to remove a saved winner, and <b>None</b> when a month has no winner.</div>
+<div class="formgrid" style="margin-top:14px">
 <div class="formrow"><label>Month</label><select id="winnerMonth"></select></div>
 <div class="formrow"><label>Winner</label><select id="winnerMember"></select></div>
 <div class="formrow"><label>Winner date</label><input id="winnerDate" type="date"></div>
 </div>
-<button class="btn-secondary" id="addWinnerBtn">Add to Save List</button>
+<div class="winner-actions">
+<button class="btn-green" id="addWinnerBtn">＋ Add</button>
+<button class="btn-none" id="noneWinnerBtn">None</button>
+</div>
 <div id="pendingWinnerBox" class="pending"></div>
+<h3>All months</h3>
+<div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Date</th><th>Amount</th><th>Action</th></tr></thead><tbody id="adminWinnerRows"></tbody></table></div>
 </div>
 
 <div class="card panel">
-<h2>Monthly history</h2>
-<div class="formrow"><label>Select month</label><select id="adminHistoryMonth"></select></div>
-<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Winner</th></tr></thead><tbody id="adminHistoryRows"></tbody></table></div>
+<h2>Payment history 🏏</h2>
+<div class="history-nav">
+<button class="btn-secondary" id="adminHistoryPrev">◀ Previous</button>
+<div class="history-title" id="adminHistoryTitle">Oct 2026</div>
+<button class="btn-secondary" id="adminHistoryNext">Next ▶</button>
+</div>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Status / Action</th><th>Winner</th></tr></thead><tbody id="adminHistoryRows"></tbody></table></div>
 </div>
 </section>
 </main>
@@ -172,19 +196,26 @@ const firebaseConfig={
  appId:"1:598297563628:web:e3b5cd74d82944435cf0c9",
  measurementId:"G-8Z4PX96NZH"
 };
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-const DEFAULT_SETTINGS={monthly:2000,months:15};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const DEFAULT_SETTINGS={monthly:2000,months:15,startMonth:"2026-10"};
 const DEFAULT_MEMBERS=Array.from({length:15},(_,i)=>({id:String(i+1),name:`Member ${i+1}`}));
 let state={settings:{...DEFAULT_SETTINGS},members:[...DEFAULT_MEMBERS],payments:[],winners:[]};
 let pendingPayments=[],pendingWinners=[],isAdmin=false;
+let publicHistoryMonth=1,adminHistoryMonth=1;
 
 const $=id=>document.getElementById(id);
 const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const currentMonth=()=>Math.min(state.settings.months,Math.max(1,Math.max(0,...state.payments.map(x=>Number(x.month)),...state.winners.map(x=>Number(x.month)))+1));
+function monthLabel(n){
+ const [y,m]=String(state.settings.startMonth||"2026-10").split("-").map(Number);
+ const d=new Date(y,(m-1)+(Number(n)-1),1);
+ return d.toLocaleString("en-IN",{month:"short",year:"numeric"});
+}
+function today(){return new Date().toISOString().slice(0,10)}
+function currentMonth(){
+ const paidMonths=state.payments.map(x=>Number(x.month)),winMonths=state.winners.map(x=>Number(x.month));
+ return Math.min(state.settings.months,Math.max(1,Math.max(0,...paidMonths,...winMonths)+1));
+}
 
 async function loadData(){
  try{
@@ -192,11 +223,11 @@ async function loadData(){
    if(s.exists()) state.settings={...DEFAULT_SETTINGS,...s.data()};
    const ms=await getDocs(collection(db,"members"));
    if(!ms.empty) state.members=ms.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>Number(a.id)-Number(b.id));
-   const ps=await getDocs(collection(db,"payments"));
-   state.payments=ps.docs.map(d=>({id:d.id,...d.data()}));
-   const ws=await getDocs(collection(db,"winners"));
-   state.winners=ws.docs.map(d=>({id:d.id,...d.data()}));
- }catch(e){console.error(e); if(isAdmin) showSaveStatus("❌ Could not load Firebase data: "+(e.message||e),false);}
+   const ps=await getDocs(collection(db,"payments")); state.payments=ps.docs.map(d=>({id:d.id,...d.data()}));
+   const ws=await getDocs(collection(db,"winners")); state.winners=ws.docs.map(d=>({id:d.id,...d.data()}));
+ }catch(e){console.error(e);if(isAdmin)showSaveStatus("❌ Could not load Firebase data: "+(e.message||e),false)}
+ publicHistoryMonth=Math.min(state.settings.months,Math.max(1,publicHistoryMonth));
+ adminHistoryMonth=Math.min(state.settings.months,Math.max(1,adminHistoryMonth));
  renderAll();
 }
 
@@ -205,7 +236,7 @@ function renderHeader(){
  $("statMembers").textContent=state.members.length;
  $("statMonthly").textContent=money(state.settings.monthly);
  $("statPool").textContent=money(state.settings.monthly*state.members.length);
- $("statCurrent").textContent=`${currentMonth()}/${state.settings.months}`;
+ $("statCurrent").textContent=`${monthLabel(currentMonth())}`;
 }
 
 function renderPublic(){
@@ -213,66 +244,127 @@ function renderPublic(){
  $("publicRows").innerHTML=state.members.map((m,i)=>{
    const p=state.payments.find(x=>x.memberId===m.id&&Number(x.month)===cm);
    const w=state.winners.find(x=>x.memberId===m.id&&Number(x.month)===cm);
-   return `<tr><td>${i+1}</td><td><b>${esc(m.name)}</b></td><td>${cm}</td><td>${p?money(p.amount):'<span class="badge">Pending</span>'}</td><td>${esc(p?.date||"—")}</td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
+   return `<tr><td>${i+1}</td><td><b>${esc(m.name)}</b></td><td>${esc(monthLabel(cm))}</td><td>${p?money(p.amount):'<span class="badge">Pending</span>'}</td><td>${esc(p?.date||"—")}</td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
  }).join("");
  $("publicWinnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>i+1).map(m=>{
    const w=state.winners.find(x=>Number(x.month)===m);
-   return `<tr><td>${m}</td><td>${w?esc(state.members.find(x=>x.id===w.memberId)?.name||"Unknown"):"—"}</td><td>${esc(w?.date||"—")}</td><td>${w?money(state.settings.monthly*state.members.length):"—"}</td></tr>`;
+   return `<tr><td>${esc(monthLabel(m))}</td><td>${w?esc(state.members.find(x=>x.id===w.memberId)?.name||"Unknown"):'<span class="badge-none">None</span>'}</td><td>${esc(w?.date||"—")}</td><td>${w?money(state.settings.monthly*state.members.length):"—"}</td></tr>`;
  }).join("");
- populateHistorySelect($("historyMonth"),currentMonth());
+ publicHistoryMonth=Math.min(state.settings.months,Math.max(1,publicHistoryMonth));
  renderPublicHistory();
 }
 
-function populateHistorySelect(sel,value){
- const old=Number(sel.value||value||1);
- sel.innerHTML=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">Month ${i+1}</option>`).join("");
- sel.value=String(Math.min(state.settings.months,Math.max(1,old)));
-}
 function renderPublicHistory(){
- const month=Number($("historyMonth").value||1);
+ $("historyTitle").textContent=monthLabel(publicHistoryMonth);
+ $("historyPrev").disabled=publicHistoryMonth<=1;
+ $("historyNext").disabled=publicHistoryMonth>=state.settings.months;
+ const month=publicHistoryMonth;
  $("historyRows").innerHTML=state.members.map((m,i)=>{
    const p=state.payments.find(x=>x.memberId===m.id&&Number(x.month)===month);
-   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):"—"}</td><td>${esc(p?.date||"—")}</td><td>${p?'<span class="badge">Paid</span>':'<span class="badge">Pending</span>'}</td></tr>`;
+   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):"—"}</td><td>${esc(p?.date||"—")}</td><td>${p?'<span class="badge-received">Received</span>':'<span class="badge">Pending</span>'}</td></tr>`;
  }).join("");
 }
 
 function renderAdmin(){
  $("monthlyAmount").value=state.settings.monthly;
  $("totalMonths").value=state.settings.months;
+ $("startMonth").value=state.settings.startMonth||"2026-10";
  $("memberInputs").innerHTML=state.members.map((m,i)=>`<div class="member-row"><div class="member-no">${i+1}</div><input class="member-name" data-id="${esc(m.id)}" value="${esc(m.name)}"></div>`).join("");
  populateAdminSelects();
  renderPending();
+ renderAdminWinners();
  renderAdminHistory();
 }
+
 function populateAdminSelects(){
- const monthOpts=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">Month ${i+1}</option>`).join("");
- ["payMonth","winnerMonth","adminHistoryMonth"].forEach(id=>{
-   const el=$(id),old=el.value||"1";el.innerHTML=monthOpts;el.value=String(Math.min(state.settings.months,Math.max(1,Number(old)||1)));
- });
+ const monthOpts=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">${esc(monthLabel(i+1))}</option>`).join("");
+ const oldPay=$("payMonth").value||"1",oldWin=$("winnerMonth").value||"1";
+ $("payMonth").innerHTML=monthOpts;$("winnerMonth").innerHTML=monthOpts;
+ $("payMonth").value=String(Math.min(state.settings.months,Math.max(1,Number(oldPay)||1)));
+ $("winnerMonth").value=String(Math.min(state.settings.months,Math.max(1,Number(oldWin)||1)));
  $("payMember").innerHTML=state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
- $("winnerMember").innerHTML=state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
+ $("winnerMember").innerHTML=`<option value="NONE">None</option>`+state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
 }
+
 function renderPending(){
- $("pendingPaymentBox").innerHTML=pendingPayments.length?`<h3>Pending payments</h3><div class="table-scroll"><table><tr><th>Month</th><th>Member</th><th>Amount</th><th>Date</th><th></th></tr>${pendingPayments.map((p,i)=>`<tr><td>${p.month}</td><td>${esc(state.members.find(m=>m.id===p.memberId)?.name||"")}</td><td>${money(p.amount)}</td><td>${esc(p.date||"—")}</td><td><button class="btn-danger" data-rm-pay="${i}">Remove</button></td></tr>`).join("")}</table></div>`:"";
- $("pendingWinnerBox").innerHTML=pendingWinners.length?`<h3>Pending winners</h3><div class="table-scroll"><table><tr><th>Month</th><th>Winner</th><th>Date</th><th></th></tr>${pendingWinners.map((w,i)=>`<tr><td>${w.month}</td><td>${esc(state.members.find(m=>m.id===w.memberId)?.name||"")}</td><td>${esc(w.date||"—")}</td><td><button class="btn-danger" data-rm-win="${i}">Remove</button></td></tr>`).join("")}</table></div>`:"";
+ $("pendingPaymentBox").innerHTML=pendingPayments.length?`<h3>Changes waiting for Save All</h3><div class="table-scroll"><table><tr><th>Month</th><th>Member</th><th>Amount</th><th>Date</th><th></th></tr>${pendingPayments.map((p,i)=>`<tr><td>${esc(monthLabel(p.month))}</td><td>${esc(state.members.find(m=>m.id===p.memberId)?.name||"")}</td><td>${money(p.amount)}</td><td>${esc(p.date||"—")}</td><td><button class="btn-danger btn-small" data-rm-pay="${i}">Remove</button></td></tr>`).join("")}</table></div>`:"";
+ $("pendingWinnerBox").innerHTML=pendingWinners.length?`<h3>Winner changes waiting for Save All</h3><div class="table-scroll"><table><tr><th>Month</th><th>Winner</th><th>Date</th><th></th></tr>${pendingWinners.map((w,i)=>`<tr><td>${esc(monthLabel(w.month))}</td><td>${w.memberId==="NONE"?"None":w.delete?"Remove":esc(state.members.find(m=>m.id===w.memberId)?.name||"")}</td><td>${esc(w.date||"—")}</td><td><button class="btn-danger btn-small" data-rm-win="${i}">Remove change</button></td></tr>`).join("")}</table></div>`:"";
  document.querySelectorAll("[data-rm-pay]").forEach(b=>b.onclick=()=>{pendingPayments.splice(Number(b.dataset.rmPay),1);renderPending();renderAdminHistory()});
- document.querySelectorAll("[data-rm-win]").forEach(b=>b.onclick=()=>{pendingWinners.splice(Number(b.dataset.rmWin),1);renderPending();renderAdminHistory()});
+ document.querySelectorAll("[data-rm-win]").forEach(b=>b.onclick=()=>{pendingWinners.splice(Number(b.dataset.rmWin),1);renderPending();renderAdminWinners();renderAdminHistory()});
 }
+
+function renderAdminWinners(){
+ $("adminWinnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>i+1).map(m=>{
+   const staged=pendingWinners.find(x=>Number(x.month)===m);
+   const saved=state.winners.find(x=>Number(x.month)===m);
+   const w=staged?.delete?null:(staged||saved);
+   const winnerName=w&&w.memberId!=="NONE"?state.members.find(x=>x.id===w.memberId)?.name||"Unknown":"None";
+   const date=w?.date||"—";
+   const amount=w&&w.memberId!=="NONE"?money(state.settings.monthly*state.members.length):"—";
+   const hasWinner=w&&w.memberId!=="NONE";
+   return `<tr><td>${esc(monthLabel(m))}</td><td>${hasWinner?`<span class="winner">🏆 ${esc(winnerName)}</span>`:'<span class="badge-none">None</span>'}</td><td>${esc(date)}</td><td>${amount}</td><td><div class="winner-actions"><button class="btn-green btn-small" data-add-row="${m}">Add</button>${hasWinner?`<button class="btn-danger btn-small" data-remove-row="${m}">Remove</button>`:`<button class="btn-danger btn-small" disabled>Remove</button>`}<button class="btn-none btn-small" data-none-row="${m}">None</button></div></td></tr>`;
+ }).join("");
+ document.querySelectorAll("[data-add-row]").forEach(b=>b.onclick=()=>{
+   $("winnerMonth").value=b.dataset.addRow;
+   $("winnerMember").value=$("winnerMember").value==="NONE"?(state.members[0]?.id||"NONE"):$("winnerMember").value;
+   addWinnerForMonth(Number(b.dataset.addRow));
+ });
+ document.querySelectorAll("[data-remove-row]").forEach(b=>b.onclick=()=>{
+   const month=Number(b.dataset.removeRow);
+   pendingWinners=pendingWinners.filter(x=>Number(x.month)!==month);
+   const saved=state.winners.find(x=>Number(x.month)===month);
+   if(saved) pendingWinners.push({id:saved.id,month,memberId:"__DELETE__",date:"",delete:true});
+   renderPending();renderAdminWinners();renderAdminHistory();
+ });
+ document.querySelectorAll("[data-none-row]").forEach(b=>b.onclick=()=>{
+   const month=Number(b.dataset.noneRow);
+   pendingWinners=pendingWinners.filter(x=>Number(x.month)!==month);
+   const saved=state.winners.find(x=>Number(x.month)===month);
+   if(saved) pendingWinners.push({id:saved.id,month,memberId:"__DELETE__",date:"",delete:true});
+   else pendingWinners.push({id:`month_${month}`,month,memberId:"NONE",date:""});
+   renderPending();renderAdminWinners();renderAdminHistory();
+ });
+}
+
 function renderAdminHistory(){
- const month=Number($("adminHistoryMonth").value||1);
+ $("adminHistoryTitle").textContent=monthLabel(adminHistoryMonth);
+ $("adminHistoryPrev").disabled=adminHistoryMonth<=1;
+ $("adminHistoryNext").disabled=adminHistoryMonth>=state.settings.months;
+ const month=adminHistoryMonth;
  $("adminHistoryRows").innerHTML=state.members.map((m,i)=>{
    const p=[...state.payments,...pendingPayments].find(x=>x.memberId===m.id&&Number(x.month)===month);
-   const w=[...state.winners,...pendingWinners].find(x=>x.memberId===m.id&&Number(x.month)===month);
-   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):"—"}</td><td>${esc(p?.date||"—")}</td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
+   const w=state.winners.find(x=>x.memberId===m.id&&Number(x.month)===month);
+   const received=p?`<span class="badge-received">Received</span>`:`<button class="btn-received btn-small" data-receive="${esc(m.id)}">✓ Received</button>`;
+   const remove=p?`<button class="btn-danger btn-small" data-remove-pay="${esc(m.id)}">Remove</button>`:"";
+   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):money(state.settings.monthly)}</td><td>${esc(p?.date||"—")}</td><td><div class="winner-actions">${received}${remove}</div></td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
  }).join("");
+ document.querySelectorAll("[data-receive]").forEach(b=>b.onclick=()=>{
+   const memberId=b.dataset.receive,month=adminHistoryMonth;
+   const existing=state.payments.find(x=>x.memberId===memberId&&Number(x.month)===month);
+   const item={id:`${memberId}_m${month}`,memberId,month,amount:state.settings.monthly,date:today()};
+   const idx=pendingPayments.findIndex(x=>x.id===item.id);
+   if(idx>=0)pendingPayments[idx]=item;else pendingPayments.push(item);
+   renderPending();renderAdminHistory();renderPublicHistory();
+ });
+ document.querySelectorAll("[data-remove-pay]").forEach(b=>b.onclick=()=>{
+   const memberId=b.dataset.removePay,month=adminHistoryMonth;
+   pendingPayments=pendingPayments.filter(x=>!(x.memberId===memberId&&Number(x.month)===month));
+   const saved=state.payments.find(x=>x.memberId===memberId&&Number(x.month)===month);
+   if(saved)pendingPayments.push({id:saved.id,memberId,month,amount:0,date:"",delete:true});
+   renderPending();renderAdminHistory();
+ });
 }
+
 function renderAll(){renderHeader();renderPublic();if(isAdmin)renderAdmin()}
 function showSaveStatus(msg,good){const el=$("saveStatus");el.textContent=msg;el.className="status "+(good?"good":"bad")}
 
 $("adminBtn").onclick=()=>{$("publicView").classList.add("hidden");$("adminView").classList.add("hidden");$("loginView").classList.remove("hidden");$("loginStatus").textContent=""};
 $("backBtn").onclick=()=>{$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden")};
-$("historyMonth").onchange=renderPublicHistory;
-$("adminHistoryMonth").onchange=renderAdminHistory;
+
+$("historyPrev").onclick=()=>{if(publicHistoryMonth>1){publicHistoryMonth--;renderPublicHistory()}};
+$("historyNext").onclick=()=>{if(publicHistoryMonth<state.settings.months){publicHistoryMonth++;renderPublicHistory()}};
+$("adminHistoryPrev").onclick=()=>{if(adminHistoryMonth>1){adminHistoryMonth--;renderAdminHistory()}};
+$("adminHistoryNext").onclick=()=>{if(adminHistoryMonth<state.settings.months){adminHistoryMonth++;renderAdminHistory()}};
 
 $("loginBtn").onclick=async()=>{
  const email=$("adminEmail").value.trim(),password=$("adminPassword").value;
@@ -284,13 +376,8 @@ $("loginBtn").onclick=async()=>{
 
 onAuthStateChanged(auth,user=>{
  isAdmin=!!user;
- if(user){
-   $("loginView").classList.add("hidden");$("publicView").classList.add("hidden");$("adminView").classList.remove("hidden");
-   loadData();
- }else{
-   $("adminView").classList.add("hidden");$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden");
-   loadData();
- }
+ if(user){$("loginView").classList.add("hidden");$("publicView").classList.add("hidden");$("adminView").classList.remove("hidden");loadData()}
+ else{$("adminView").classList.add("hidden");$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden");loadData()}
 });
 
 $("logoutBtn").onclick=async()=>{
@@ -299,55 +386,68 @@ $("logoutBtn").onclick=async()=>{
 };
 
 $("addPaymentBtn").onclick=()=>{
- const month=Number($("payMonth").value),memberId=$("payMember").value,amount=Number($("payAmount").value),date=$("payDate").value;
- if(!Number.isFinite(amount)||amount<0){alert("Enter payment amount.");return}
- const id=`${memberId}_m${month}`,item={id,memberId,month,amount,date};
- const idx=pendingPayments.findIndex(x=>x.id===id);
+ const month=Number($("payMonth").value),memberId=$("payMember").value;
+ const amount=Number($("payAmount").value)||state.settings.monthly;
+ const date=$("payDate").value||today();
+ const item={id:`${memberId}_m${month}`,memberId,month,amount,date};
+ const idx=pendingPayments.findIndex(x=>x.id===item.id);
  if(idx>=0)pendingPayments[idx]=item;else pendingPayments.push(item);
- $("payAmount").value="";$("payDate").value="";renderPending();renderAdminHistory();
+ $("payAmount").value="";$("payDate").value="";
+ renderPending();renderAdminHistory();
 };
 
-$("addWinnerBtn").onclick=()=>{
- const month=Number($("winnerMonth").value),memberId=$("winnerMember").value,date=$("winnerDate").value;
- if(state.winners.some(x=>Number(x.month)===month)||pendingWinners.some(x=>Number(x.month)===month)){alert("A winner already exists for this month.");return}
- if(state.winners.some(x=>x.memberId===memberId)||pendingWinners.some(x=>x.memberId===memberId)){alert("This member has already won.");return}
- pendingWinners.push({id:`month_${month}`,month,memberId,date});renderPending();renderAdminHistory();
-};
+function addWinnerForMonth(month){
+ const memberId=$("winnerMember").value,date=$("winnerDate").value||today();
+ pendingWinners=pendingWinners.filter(x=>Number(x.month)!==month);
+ const existing=state.winners.find(x=>Number(x.month)===month);
+ if(memberId==="NONE"){
+   if(existing)pendingWinners.push({id:existing.id,month,memberId:"__DELETE__",date:"",delete:true});
+   else pendingWinners.push({id:`month_${month}`,month,memberId:"NONE",date:""});
+ }else{
+   const alreadyWon=state.winners.some(x=>x.memberId===memberId&&Number(x.month)!==month)||pendingWinners.some(x=>x.memberId===memberId&&x.memberId!=="NONE"&&!x.delete);
+   if(alreadyWon){alert("This member has already won.");return}
+   pendingWinners.push({id:`month_${month}`,month,memberId,date});
+ }
+ renderPending();renderAdminWinners();renderAdminHistory();
+}
+$("addWinnerBtn").onclick=()=>addWinnerForMonth(Number($("winnerMonth").value));
+$("noneWinnerBtn").onclick=()=>{ $("winnerMember").value="NONE"; addWinnerForMonth(Number($("winnerMonth").value)); };
 
 $("totalMonths").onchange=()=>{
  const n=Math.max(1,Math.min(60,Number($("totalMonths").value)||15));
- $("totalMonths").value=n;populateAdminSelects();renderPending();renderAdminHistory();
+ $("totalMonths").value=n;
+ publicHistoryMonth=Math.min(publicHistoryMonth,n);adminHistoryMonth=Math.min(adminHistoryMonth,n);
+ populateAdminSelects();renderPending();renderAdminWinners();renderAdminHistory();
+};
+
+$("startMonth").onchange=()=>{
+ const v=$("startMonth").value;
+ if(v){state.settings.startMonth=v;publicHistoryMonth=1;adminHistoryMonth=1;populateAdminSelects();renderAll()}
 };
 
 $("saveBtn").onclick=async()=>{
  try{
-   $("saveBtn").disabled=true;
-   showSaveStatus("Saving... please wait.",true);
+   $("saveBtn").disabled=true;showSaveStatus("Saving... please wait.",true);
    const monthly=Math.max(1,Number($("monthlyAmount").value)||2000);
    const months=Math.max(1,Math.min(60,Number($("totalMonths").value)||15));
+   const startMonth=$("startMonth").value||"2026-10";
    const members=[...document.querySelectorAll(".member-name")].map((el,i)=>({id:el.dataset.id||String(i+1),name:el.value.trim()||`Member ${i+1}`}));
    const validPayments=pendingPayments.filter(x=>Number(x.month)<=months);
    const validWinners=pendingWinners.filter(x=>Number(x.month)<=months);
-
    const batch=writeBatch(db);
-   batch.set(doc(db,"settings","main"),{monthly,months});
+   batch.set(doc(db,"settings","main"),{monthly,months,startMonth});
    members.forEach(m=>batch.set(doc(db,"members",m.id),m));
-   validPayments.forEach(p=>batch.set(doc(db,"payments",p.id),p));
-   validWinners.forEach(w=>batch.set(doc(db,"winners",w.id),w));
+   validPayments.forEach(p=>{if(p.delete)batch.delete(doc(db,"payments",p.id));else batch.set(doc(db,"payments",p.id),p)});
+   validWinners.forEach(w=>{if(w.delete)batch.delete(doc(db,"winners",w.id));else batch.set(doc(db,"winners",w.id),w)});
    await batch.commit();
-
-   state.settings={monthly,months};state.members=members;
-   for(const p of validPayments){const i=state.payments.findIndex(x=>x.id===p.id);if(i>=0)state.payments[i]=p;else state.payments.push(p)}
-   for(const w of validWinners){const i=state.winners.findIndex(x=>x.id===w.id);if(i>=0)state.winners[i]=w;else state.winners.push(w)}
-   pendingPayments=[];pendingWinners=[];
-   renderAll();
+   state.settings={monthly,months,startMonth};state.members=members;
+   for(const p of validPayments){const i=state.payments.findIndex(x=>x.id===p.id);if(p.delete){if(i>=0)state.payments.splice(i,1)}else if(i>=0)state.payments[i]=p;else state.payments.push(p)}
+   for(const w of validWinners){const i=state.winners.findIndex(x=>x.id===w.id);if(w.delete){if(i>=0)state.winners.splice(i,1)}else if(i>=0)state.winners[i]=w;else state.winners.push(w)}
+   pendingPayments=[];pendingWinners=[];renderAll();
    showSaveStatus("✅ All changes saved successfully to Firebase.",true);
    alert("✅ All changes saved successfully to Firebase.");
- }catch(e){
-   console.error(e);
-   showSaveStatus("❌ Save failed: "+(e.message||e),false);
-   alert("❌ Save failed. "+(e.message||e));
- }finally{$("saveBtn").disabled=false}
+ }catch(e){console.error(e);showSaveStatus("❌ Save failed: "+(e.message||e),false);alert("❌ Save failed. "+(e.message||e))}
+ finally{$("saveBtn").disabled=false}
 };
 
 renderAll();
