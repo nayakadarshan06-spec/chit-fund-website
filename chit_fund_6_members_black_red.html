@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>6 Member Chit Fund</title>
+<style>
+:root{--bg:#f2f2f2;--card:#fff;--green:#151515;--green2:#252525;--gold:#d7a72a;--pitch:#f7eeee;--text:#181818;--muted:#707070;--line:#dedede;--red:#c51f2d;--good:#16823b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
+header{background:linear-gradient(135deg,#090909,#1b1b1b 62%,#8f1520);color:#fff;border-radius:0 0 52px 52px;position:relative;overflow:hidden}
+header:after{content:"₹  •  ₹  •  ₹";position:absolute;right:20px;bottom:5px;opacity:.12;font-size:52px;letter-spacing:12px}
+.wrap{max-width:1080px;margin:auto;padding:0 18px;position:relative;z-index:1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:28px 0 36px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:60px;height:60px;border-radius:18px;background:#ffffff1c;border:1px solid #ffffff50;display:grid;place-items:center;font-size:29px}
+h1{font-size:30px;margin:0;font-weight:850}
+.sub{font-size:17px;opacity:.9;margin-top:7px}
+button{border:0;border-radius:14px;padding:12px 17px;font-size:16px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.55}
+.btn-admin{background:#fff;color:#171717}
+.btn-save{background:var(--gold);color:#173128;box-shadow:0 6px 16px #a77b2228}
+.btn-secondary{background:#edf1ee;color:#26352f}
+.btn-danger{background:#fff0ef;color:var(--red)}
+.btn-green{background:#151515;color:#fff}
+.btn-none{background:#eef0ef;color:#46534e}
+.btn-received{background:#c51f2d;color:#fff;padding:9px 13px}
+.btn-small{padding:9px 12px;font-size:14px}
+main{padding:18px 0 50px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 5px 18px #1643320a}
+.stat{min-height:140px}
+.label{color:var(--muted);font-size:19px;font-weight:650}
+.value{font-size:34px;font-weight:850;color:#151515;margin-top:14px}
+.panel{margin-top:18px}
+h2{margin:0 0 18px;color:#151515;font-size:25px}
+h3{margin:20px 0 12px}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:700px}
+th,td{padding:14px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{background:#f5faf6;color:var(--muted);font-size:15px}
+tr:last-child td{border-bottom:0}
+.badge{display:inline-block;padding:7px 12px;border-radius:999px;background:#fff4d8;color:#855d10;font-weight:800}
+.badge-received{display:inline-block;padding:7px 12px;border-radius:999px;background:#e4f6ea;color:#087443;font-weight:800}
+.badge-none{display:inline-block;padding:7px 12px;border-radius:999px;background:#eef0ef;color:#68736e;font-weight:800}
+input,select{width:100%;padding:13px 14px;border:2px solid #d2dfd8;border-radius:13px;background:#fff;font-size:17px;color:var(--text)}
+label{display:block;font-weight:700;margin:0 0 8px}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.formrow{margin-bottom:14px}
+.adminbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap}
+.notice{padding:12px 14px;border-radius:13px;background:var(--pitch);color:var(--muted);margin-top:10px}
+.status{font-weight:750;margin-top:12px;min-height:22px}
+.status.good{color:var(--good)} .status.bad{color:var(--red)}
+.hidden{display:none!important}
+.member-row{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;margin-bottom:10px}
+.member-no{font-weight:850;font-size:19px}
+.pending{margin-top:18px}
+.small{font-size:14px;color:var(--muted)}
+.winner{font-weight:850;color:#855d10}
+.history-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.history-title{font-size:20px;font-weight:850;color:var(--green);text-align:center;flex:1}
+.winner-actions{display:flex;gap:7px;flex-wrap:wrap}
+.cricket-strip{display:flex;gap:8px;align-items:center;color:#e9f4df;font-weight:800;font-size:14px;margin-top:10px}
+@media(max-width:650px){h1{font-size:24px}.sub{font-size:15px}.top{padding:22px 0 30px}.grid,.formgrid{grid-template-columns:1fr}.card{padding:20px}.stat{min-height:115px}.value{font-size:31px}.adminbar{align-items:flex-start}.history-nav button{padding:10px 12px;font-size:14px}}
+
+.payment-note{
+  margin:22px 0 8px;
+  padding:16px 18px;
+  border:1px solid #f1b5b0;
+  border-left:6px solid #c62828;
+  border-radius:16px;
+  background:#fff7f6;
+  color:#c62828;
+  font-weight:800;
+  line-height:1.5;
+  font-size:16px;
+}
+
+.card{position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,#c51f2d,#151515)}
+.btn-save{background:#d7a72a}
+.winner{color:#b06f00}
+.badge-received{background:#e8f6ec;color:#16823b}
+.badge{background:#fff2f2;color:#c51f2d}
+</style>
+
+<style id="modern-red-black-overrides">
+:root{
+ --bg:#f3f4f6!important;--card:#fff!important;--green:#171717!important;
+ --green2:#242424!important;--gold:#ff3045!important;--pitch:#fff4f5!important;
+ --text:#151515!important;--muted:#6f7379!important;--line:#e5e7eb!important;
+ --red:#e51f35!important;--good:#14864a!important
+}
+body{background:#f1f3f5!important;color:#151515!important}
+header{
+ background:
+ radial-gradient(circle at 78% 25%,rgba(229,31,53,.24),transparent 24%),
+ radial-gradient(circle at 16% 78%,rgba(229,31,53,.10),transparent 28%),
+ linear-gradient(135deg,#050505 0%,#111 58%,#1d080b 100%)!important;
+ border-radius:0 0 42px 42px!important;min-height:390px!important;
+ box-shadow:0 18px 55px rgba(0,0,0,.18)!important
+}
+header:after{content:"₹"!important;right:7%!important;bottom:-80px!important;font-size:290px!important;
+ opacity:.035!important;letter-spacing:0!important;font-weight:900!important}
+.top{padding:42px 0 150px!important;align-items:flex-start!important}
+.brand{align-items:flex-start!important}
+.logo{background:#e51f35!important;border:0!important;border-radius:13px!important;width:48px!important;height:48px!important;
+ box-shadow:0 10px 30px rgba(229,31,53,.32)!important}
+h1{font-size:clamp(30px,5vw,54px)!important;line-height:1.03!important;max-width:650px!important;letter-spacing:-1.7px!important}
+.sub{font-size:18px!important;max-width:620px!important;margin-top:16px!important;color:#d7d7d7!important;line-height:1.5!important}
+.cricket-strip{color:#ff5062!important;margin-top:16px!important;letter-spacing:.2px!important}
+.btn-admin{background:#e51f35!important;color:#fff!important;border-radius:11px!important;padding:13px 22px!important;
+ box-shadow:0 8px 25px rgba(229,31,53,.3)!important}
+main{margin-top:-105px!important;position:relative!important;z-index:4!important;padding-bottom:70px!important}
+.grid{gap:14px!important;grid-template-columns:repeat(4,1fr)!important}
+.card{border:1px solid #e8e8e8!important;border-radius:18px!important;box-shadow:0 12px 35px rgba(20,20,20,.07)!important}
+.card:before{height:0!important}
+.stat{min-height:150px!important;padding:24px!important}
+.stat:first-child{background:linear-gradient(145deg,#151515,#242424)!important}
+.stat:first-child .label{color:#bdbdbd!important}.stat:first-child .value{color:#fff!important}
+.label{font-size:14px!important;text-transform:uppercase!important;letter-spacing:.7px!important;font-weight:750!important}
+.value{color:#151515!important;font-size:31px!important}
+.panel{margin-top:20px!important;padding:28px!important}
+h2{color:#171717!important;letter-spacing:-.4px!important}
+table{border:1px solid #ececec!important;border-radius:14px!important;overflow:hidden!important}
+th{background:#171717!important;color:#fff!important;text-transform:uppercase!important;font-size:12px!important;letter-spacing:.5px!important}
+td{background:#fff!important}
+tr:hover td{background:#fff8f9!important}
+.badge{background:#fff0f2!important;color:#d71931!important}
+.badge-received{background:#eaf8f0!important;color:#118247!important}
+.badge-none{background:#f0f0f0!important;color:#555!important}
+.winner{color:#d71931!important}
+button{border-radius:10px!important}
+.btn-save,.btn-received{background:#e51f35!important;color:#fff!important;box-shadow:0 7px 18px rgba(229,31,53,.2)!important}
+.btn-green{background:#171717!important;color:#fff!important}
+.btn-danger{background:#fff0f2!important;color:#cf1930!important}
+.btn-none,.btn-secondary{background:#f0f1f3!important;color:#303236!important}
+input,select{border:1px solid #dfe2e5!important;border-radius:10px!important;background:#fafafa!important}
+input:focus,select:focus{outline:2px solid rgba(229,31,53,.16)!important;border-color:#e51f35!important}
+.notice{background:#fff5f6!important;border-left:4px solid #e51f35!important;color:#626262!important}
+.history-title{color:#171717!important}
+.payment-note{background:#fff4f5!important;border-color:#f0b4bb!important;border-left-color:#e51f35!important;color:#c9182d!important}
+#adminView>.card:first-child{background:linear-gradient(135deg,#151515,#252525)!important;border:0!important}
+#adminView>.card:first-child h2{color:#fff!important}
+#adminView>.card:first-child .small{color:#c7c7c7!important}
+@media(max-width:820px){
+ header{min-height:340px!important}.top{padding:30px 0 130px!important}
+ .grid{grid-template-columns:repeat(2,1fr)!important}
+}
+@media(max-width:520px){
+ header{min-height:330px!important;border-radius:0 0 30px 30px!important}
+ .top{padding:25px 0 120px!important}
+ h1{font-size:30px!important;letter-spacing:-.8px!important}
+ .sub{font-size:15px!important}.cricket-strip{font-size:12px!important}
+ .logo{width:43px!important;height:43px!important}
+ main{margin-top:-88px!important}
+ .grid{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
+ .stat{padding:17px!important;min-height:116px!important}
+ .value{font-size:25px!important}.panel{padding:18px!important;border-radius:15px!important}
+}
+</style>
+
+
+<style id="layout-design-v2">
+/* DESIGN ONLY — black/red theme is preserved */
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;
+  letter-spacing:-.15px!important;
+}
+header{
+  min-height:500px!important;
+  border-radius:0!important;
+  background:
+    radial-gradient(circle at 82% 20%,rgba(229,31,53,.22),transparent 23%),
+    radial-gradient(circle at 18% 65%,rgba(229,31,53,.08),transparent 30%),
+    linear-gradient(135deg,#050505 0%,#111 62%,#21090d 100%)!important;
+}
+.top{
+  max-width:1180px!important;
+  padding:28px 28px 185px!important;
+  margin:auto!important;
+  align-items:center!important;
+}
+.brand{align-items:center!important}
+.logo{
+  width:54px!important;height:54px!important;border-radius:16px!important;
+  font-size:24px!important;flex:0 0 54px!important;
+}
+h1{
+  font-size:clamp(32px,5vw,62px)!important;
+  line-height:1.02!important;
+  letter-spacing:-2.6px!important;
+  font-weight:850!important;
+}
+.sub{
+  font-size:17px!important;
+  margin-top:14px!important;
+  max-width:620px!important;
+}
+.cricket-strip{
+  font-size:13px!important;
+  margin-top:13px!important;
+}
+main{
+  max-width:1180px!important;
+  padding:0 28px 80px!important;
+  margin:-140px auto 0!important;
+}
+.grid{
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:16px!important;
+  align-items:stretch!important;
+}
+.stat{
+  min-height:170px!important;
+  padding:28px!important;
+  border-radius:20px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+}
+.stat:nth-child(1){grid-column:span 1!important}
+.stat:nth-child(2){grid-column:span 1!important}
+.stat:nth-child(3){grid-column:span 1!important}
+.stat:nth-child(4){grid-column:span 1!important}
+.label{
+  font-size:13px!important;
+  letter-spacing:1px!important;
+  line-height:1.3!important;
+}
+.value{
+  font-size:36px!important;
+  line-height:1!important;
+  margin-top:20px!important;
+  letter-spacing:-1.3px!important;
+}
+.panel{
+  margin-top:22px!important;
+  padding:30px!important;
+  border-radius:20px!important;
+}
+.panel h2{
+  font-size:28px!important;
+  letter-spacing:-.9px!important;
+  margin-bottom:22px!important;
+}
+.table-scroll{
+  border:1px solid #e9e9e9!important;
+  border-radius:14px!important;
+}
+table{
+  border:0!important;
+  min-width:760px!important;
+}
+th{
+  padding:16px 18px!important;
+  font-size:11px!important;
+  letter-spacing:.8px!important;
+}
+td{
+  padding:17px 18px!important;
+  font-size:15px!important;
+}
+tr td:first-child, tr th:first-child{
+  padding-left:20px!important;
+}
+.history-nav{
+  background:#fafafa!important;
+  border:1px solid #e8e8e8!important;
+  border-radius:14px!important;
+  padding:8px!important;
+}
+.history-title{
+  font-size:17px!important;
+}
+.history-nav button{
+  min-width:105px!important;
+}
+.formgrid{
+  gap:18px!important;
+}
+input,select{
+  min-height:48px!important;
+  font-size:16px!important;
+}
+.member-row{
+  grid-template-columns:42px 1fr!important;
+  margin-bottom:12px!important;
+}
+.member-row input{
+  min-height:48px!important;
+}
+.adminbar{
+  padding:4px 0!important;
+}
+.admin-actions button{
+  min-height:46px!important;
+}
+.notice{
+  border-radius:12px!important;
+  padding:14px 16px!important;
+}
+.payment-note{
+  font-size:15px!important;
+  margin-top:24px!important;
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)!important}
+  .stat{min-height:145px!important}
+}
+@media(max-width:600px){
+  header{min-height:390px!important}
+  .top{
+    padding:22px 18px 155px!important;
+    align-items:flex-start!important;
+  }
+  .brand{gap:11px!important}
+  .logo{width:46px!important;height:46px!important;flex-basis:46px!important}
+  h1{
+    font-size:31px!important;
+    letter-spacing:-1.2px!important;
+  }
+  .sub{font-size:14px!important;line-height:1.45!important}
+  .cricket-strip{font-size:11px!important}
+  .btn-admin{padding:11px 15px!important;font-size:14px!important}
+  main{
+    padding:0 14px 55px!important;
+    margin:-115px auto 0!important;
+  }
+  .grid{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
+  .stat{
+    min-height:125px!important;
+    padding:18px!important;
+    border-radius:16px!important;
+  }
+  .label{font-size:11px!important}
+  .value{font-size:27px!important;margin-top:12px!important}
+  .panel{
+    padding:18px!important;
+    border-radius:17px!important;
+    margin-top:14px!important;
+  }
+  .panel h2{font-size:22px!important;margin-bottom:16px!important}
+  th{padding:13px 14px!important}
+  td{padding:14px!important;font-size:14px!important}
+  .history-nav{padding:5px!important}
+  .history-nav button{min-width:0!important;padding:10px!important;font-size:13px!important}
+}
+</style>
+
+</head>
+<body>
+<header>
+<div class="wrap top">
+<div class="brand"><div class="logo">₹</div><div><h1>6 Member Chit Fund</h1><div id="headerSub" class="sub">₹2,000 monthly • 15 months • ₹12,000 monthly pool</div><div class="cricket-strip">Smart Chit Fund • Transparent payments • Monthly records</div></div></div>
+<button class="btn-admin" id="adminBtn">Admin</button>
+</div>
+</header>
+
+<main class="wrap">
+<section id="publicView">
+<div class="grid">
+<div class="card stat"><div class="label">Members</div><div class="value" id="statMembers">6</div></div>
+<div class="card stat"><div class="label">Monthly contribution</div><div class="value" id="statMonthly">₹2,000</div></div>
+<div class="card stat"><div class="label">Monthly pool</div><div class="value" id="statPool">₹12,000</div></div>
+<div class="card stat"><div class="label">Current month</div><div class="value" id="statCurrent">Oct 2026</div></div>
+</div>
+
+<div class="card panel">
+<h2>Members & payment status</h2>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Month</th><th>Payment</th><th>Date</th><th>Winner</th></tr></thead><tbody id="publicRows"></tbody></table></div>
+</div>
+
+<div class="card panel">
+<h2>Monthly winners 🏆</h2>
+<div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Date</th><th>Amount</th></tr></thead><tbody id="publicWinnerRows"></tbody></table></div>
+</div>
+
+<div class="card panel">
+<h2>Monthly payment history 🏏</h2>
+<div class="history-nav">
+<button class="btn-secondary" id="historyPrev">◀ Previous</button>
+<div class="history-title" id="historyTitle">Oct 2026</div>
+<button class="btn-secondary" id="historyNext">Next ▶</button>
+</div>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead><tbody id="historyRows"></tbody></table></div>
+
+<div class="payment-note">
+  🔴 Important: Please make your monthly payment on time. After making the payment, inform the admin so it can be marked as <b>Received</b>.
+</div>
+</div>
+</section>
+
+<section id="loginView" class="hidden">
+<div class="card panel">
+<h2>Admin Login</h2>
+<div class="notice">Use the Firebase admin account created for this website.</div>
+<div class="formrow" style="margin-top:16px"><label>Email</label><input id="adminEmail" type="email" value="nayakadarshan06@gmail.com" autocomplete="username"></div>
+<div class="formrow"><label>Password</label><input id="adminPassword" type="password" autocomplete="current-password"></div>
+<button class="btn-save" id="loginBtn">Login</button>
+<button class="btn-secondary" id="backBtn" style="margin-left:8px">Back</button>
+<div id="loginStatus" class="status"></div>
+</div>
+</section>
+
+<section id="adminView" class="hidden">
+<div class="card panel">
+<div class="adminbar">
+<div><h2 style="margin-bottom:5px;color:#173128">Admin dashboard — Darshan</h2><div class="small">Make all changes first, then use one Save All button.</div></div>
+<div class="admin-actions"><button class="btn-save" id="saveBtn">💾 Save All</button><button class="btn-secondary" id="logoutBtn">Logout</button></div>
+</div>
+<div id="saveStatus" class="status"></div>
+</div>
+
+<div class="card panel">
+<h2>Fund settings</h2>
+<div class="formgrid">
+<div class="formrow"><label>Monthly amount</label><input id="monthlyAmount" type="number" min="1"></div>
+<div class="formrow"><label>Total months</label><input id="totalMonths" type="number" min="1" max="60"></div>
+<div class="formrow"><label>First month</label><input id="startMonth" type="month"></div>
+</div>
+<div class="notice">Month 1 will be shown using the first month above. Example: <b>Oct 2026</b>, then Nov 2026, Dec 2026...</div>
+</div>
+
+<div class="card panel">
+<h2>Members</h2>
+<div class="notice">Edit all member names here. There is no individual Save button.</div>
+<div id="memberInputs" style="margin-top:16px"></div>
+</div>
+
+<div class="card panel">
+<h2>Payment received</h2>
+<div class="notice">If a member has paid, use <b>Received</b>. It stages the payment for the single Save All button.</div>
+<div class="formgrid" style="margin-top:14px">
+<div class="formrow"><label>Month</label><select id="payMonth"></select></div>
+<div class="formrow"><label>Member</label><select id="payMember"></select></div>
+<div class="formrow"><label>Amount received</label><input id="payAmount" type="number" min="0" placeholder="2000"></div>
+<div class="formrow"><label>Payment date</label><input id="payDate" type="date"></div>
+</div>
+<button class="btn-received" id="addPaymentBtn">✓ Received</button>
+<div id="pendingPaymentBox" class="pending"></div>
+</div>
+
+<div class="card panel">
+<h2>Winner list 🏆</h2>
+<div class="notice">Use <b>Add</b> to stage a winner, <b>Remove</b> to remove a saved winner, and <b>None</b> when a month has no winner.</div>
+<div class="formgrid" style="margin-top:14px">
+<div class="formrow"><label>Month</label><select id="winnerMonth"></select></div>
+<div class="formrow"><label>Winner</label><select id="winnerMember"></select></div>
+<div class="formrow"><label>Winner date</label><input id="winnerDate" type="date"></div>
+</div>
+<div class="winner-actions">
+<button class="btn-green" id="addWinnerBtn">＋ Add</button>
+<button class="btn-none" id="noneWinnerBtn">None</button>
+</div>
+<div id="pendingWinnerBox" class="pending"></div>
+<h3>All months</h3>
+<div class="table-scroll"><table><thead><tr><th>Month</th><th>Winner</th><th>Date</th><th>Amount</th><th>Action</th></tr></thead><tbody id="adminWinnerRows"></tbody></table></div>
+</div>
+
+<div class="card panel">
+<h2>Payment history</h2>
+<div class="history-nav">
+<button class="btn-secondary" id="adminHistoryPrev">◀ Previous</button>
+<div class="history-title" id="adminHistoryTitle">Oct 2026</div>
+<button class="btn-secondary" id="adminHistoryNext">Next ▶</button>
+</div>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>Member</th><th>Amount</th><th>Date</th><th>Status / Action</th><th>Winner</th></tr></thead><tbody id="adminHistoryRows"></tbody></table></div>
+</div>
+</section>
+</main>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,getDocs,collection,writeBatch} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyAD-yCxGUdvZHny1cFPQM2AgVQDHKNY69Q",
+ authDomain:"darshan-chit-fund.firebaseapp.com",
+ projectId:"darshan-chit-fund",
+ storageBucket:"darshan-chit-fund.firebasestorage.app",
+ messagingSenderId:"598297563628",
+ appId:"1:598297563628:web:e3b5cd74d82944435cf0c9",
+ measurementId:"G-8Z4PX96NZH"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const DEFAULT_SETTINGS={monthly:2000,months:15,startMonth:"2026-10"};
+const DEFAULT_MEMBERS=Array.from({length:6},(_,i)=>({id:String(i+1),name:`Member ${i+1}`}));
+let state={settings:{...DEFAULT_SETTINGS},members:[...DEFAULT_MEMBERS],payments:[],winners:[]};
+let pendingPayments=[],pendingWinners=[],isAdmin=false;
+let publicHistoryMonth=1,adminHistoryMonth=1;
+
+const $=id=>document.getElementById(id);
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function monthLabel(n){
+ const [y,m]=String(state.settings.startMonth||"2026-10").split("-").map(Number);
+ const d=new Date(y,(m-1)+(Number(n)-1),1);
+ return d.toLocaleString("en-IN",{month:"short",year:"numeric"});
+}
+function today(){return new Date().toISOString().slice(0,10)}
+function currentMonth(){
+ const paidMonths=state.payments.map(x=>Number(x.month)),winMonths=state.winners.map(x=>Number(x.month));
+ return Math.min(state.settings.months,Math.max(1,Math.max(0,...paidMonths,...winMonths)+1));
+}
+
+async function loadData(){
+ try{
+   const s=await getDoc(doc(db,"settings","main"));
+   if(s.exists()) state.settings={...DEFAULT_SETTINGS,...s.data()};
+   const ms=await getDocs(collection(db,"members"));
+   if(!ms.empty) state.members=ms.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>Number(a.id)-Number(b.id));
+   const ps=await getDocs(collection(db,"payments")); state.payments=ps.docs.map(d=>({id:d.id,...d.data()}));
+   const ws=await getDocs(collection(db,"winners")); state.winners=ws.docs.map(d=>({id:d.id,...d.data()}));
+ }catch(e){console.error(e);if(isAdmin)showSaveStatus("❌ Could not load Firebase data: "+(e.message||e),false)}
+ publicHistoryMonth=Math.min(state.settings.months,Math.max(1,publicHistoryMonth));
+ adminHistoryMonth=Math.min(state.settings.months,Math.max(1,adminHistoryMonth));
+ renderAll();
+}
+
+function renderHeader(){
+ $("headerSub").textContent=`${money(state.settings.monthly)} monthly • ${state.settings.months} months • ${money(state.settings.monthly*state.members.length)} monthly pool`;
+ $("statMembers").textContent=state.members.length;
+ $("statMonthly").textContent=money(state.settings.monthly);
+ $("statPool").textContent=money(state.settings.monthly*state.members.length);
+ $("statCurrent").textContent=`${monthLabel(currentMonth())}`;
+}
+
+function renderPublic(){
+ const cm=currentMonth();
+ $("publicRows").innerHTML=state.members.map((m,i)=>{
+   const p=state.payments.find(x=>x.memberId===m.id&&Number(x.month)===cm);
+   const w=state.winners.find(x=>x.memberId===m.id&&Number(x.month)===cm);
+   return `<tr><td>${i+1}</td><td><b>${esc(m.name)}</b></td><td>${esc(monthLabel(cm))}</td><td>${p?money(p.amount):'<span class="badge">Pending</span>'}</td><td>${esc(p?.date||"—")}</td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
+ }).join("");
+ $("publicWinnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>i+1).map(m=>{
+   const w=state.winners.find(x=>Number(x.month)===m);
+   return `<tr><td>${esc(monthLabel(m))}</td><td>${w?esc(state.members.find(x=>x.id===w.memberId)?.name||"Unknown"):'<span class="badge-none">None</span>'}</td><td>${esc(w?.date||"—")}</td><td>${w?money(state.settings.monthly*state.members.length):"—"}</td></tr>`;
+ }).join("");
+ publicHistoryMonth=Math.min(state.settings.months,Math.max(1,publicHistoryMonth));
+ renderPublicHistory();
+}
+
+function renderPublicHistory(){
+ $("historyTitle").textContent=monthLabel(publicHistoryMonth);
+ $("historyPrev").disabled=publicHistoryMonth<=1;
+ $("historyNext").disabled=publicHistoryMonth>=state.settings.months;
+ const month=publicHistoryMonth;
+ $("historyRows").innerHTML=state.members.map((m,i)=>{
+   const p=state.payments.find(x=>x.memberId===m.id&&Number(x.month)===month);
+   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):"—"}</td><td>${esc(p?.date||"—")}</td><td>${p?'<span class="badge-received">Received</span>':'<span class="badge">Pending</span>'}</td></tr>`;
+ }).join("");
+}
+
+function renderAdmin(){
+ $("monthlyAmount").value=state.settings.monthly;
+ $("totalMonths").value=state.settings.months;
+ $("startMonth").value=state.settings.startMonth||"2026-10";
+ $("memberInputs").innerHTML=state.members.map((m,i)=>`<div class="member-row"><div class="member-no">${i+1}</div><input class="member-name" data-id="${esc(m.id)}" value="${esc(m.name)}"></div>`).join("");
+ populateAdminSelects();
+ renderPending();
+ renderAdminWinners();
+ renderAdminHistory();
+}
+
+function populateAdminSelects(){
+ const monthOpts=Array.from({length:state.settings.months},(_,i)=>`<option value="${i+1}">${esc(monthLabel(i+1))}</option>`).join("");
+ const oldPay=$("payMonth").value||"1",oldWin=$("winnerMonth").value||"1";
+ $("payMonth").innerHTML=monthOpts;$("winnerMonth").innerHTML=monthOpts;
+ $("payMonth").value=String(Math.min(state.settings.months,Math.max(1,Number(oldPay)||1)));
+ $("winnerMonth").value=String(Math.min(state.settings.months,Math.max(1,Number(oldWin)||1)));
+ $("payMember").innerHTML=state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
+ $("winnerMember").innerHTML=`<option value="NONE">None</option>`+state.members.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
+}
+
+function renderPending(){
+ $("pendingPaymentBox").innerHTML=pendingPayments.length?`<h3>Changes waiting for Save All</h3><div class="table-scroll"><table><tr><th>Month</th><th>Member</th><th>Amount</th><th>Date</th><th></th></tr>${pendingPayments.map((p,i)=>`<tr><td>${esc(monthLabel(p.month))}</td><td>${esc(state.members.find(m=>m.id===p.memberId)?.name||"")}</td><td>${money(p.amount)}</td><td>${esc(p.date||"—")}</td><td><button class="btn-danger btn-small" data-rm-pay="${i}">Remove</button></td></tr>`).join("")}</table></div>`:"";
+ $("pendingWinnerBox").innerHTML=pendingWinners.length?`<h3>Winner changes waiting for Save All</h3><div class="table-scroll"><table><tr><th>Month</th><th>Winner</th><th>Date</th><th></th></tr>${pendingWinners.map((w,i)=>`<tr><td>${esc(monthLabel(w.month))}</td><td>${w.memberId==="NONE"?"None":w.delete?"Remove":esc(state.members.find(m=>m.id===w.memberId)?.name||"")}</td><td>${esc(w.date||"—")}</td><td><button class="btn-danger btn-small" data-rm-win="${i}">Remove change</button></td></tr>`).join("")}</table></div>`:"";
+ document.querySelectorAll("[data-rm-pay]").forEach(b=>b.onclick=()=>{pendingPayments.splice(Number(b.dataset.rmPay),1);renderPending();renderAdminHistory()});
+ document.querySelectorAll("[data-rm-win]").forEach(b=>b.onclick=()=>{pendingWinners.splice(Number(b.dataset.rmWin),1);renderPending();renderAdminWinners();renderAdminHistory()});
+}
+
+function renderAdminWinners(){
+ $("adminWinnerRows").innerHTML=Array.from({length:state.settings.months},(_,i)=>i+1).map(m=>{
+   const staged=pendingWinners.find(x=>Number(x.month)===m);
+   const saved=state.winners.find(x=>Number(x.month)===m);
+   const w=staged?.delete?null:(staged||saved);
+   const winnerName=w&&w.memberId!=="NONE"?state.members.find(x=>x.id===w.memberId)?.name||"Unknown":"None";
+   const date=w?.date||"—";
+   const amount=w&&w.memberId!=="NONE"?money(state.settings.monthly*state.members.length):"—";
+   const hasWinner=w&&w.memberId!=="NONE";
+   return `<tr><td>${esc(monthLabel(m))}</td><td>${hasWinner?`<span class="winner">🏆 ${esc(winnerName)}</span>`:'<span class="badge-none">None</span>'}</td><td>${esc(date)}</td><td>${amount}</td><td><div class="winner-actions"><button class="btn-green btn-small" data-add-row="${m}">Add</button>${hasWinner?`<button class="btn-danger btn-small" data-remove-row="${m}">Remove</button>`:`<button class="btn-danger btn-small" disabled>Remove</button>`}<button class="btn-none btn-small" data-none-row="${m}">None</button></div></td></tr>`;
+ }).join("");
+ document.querySelectorAll("[data-add-row]").forEach(b=>b.onclick=()=>{
+   $("winnerMonth").value=b.dataset.addRow;
+   $("winnerMember").value=$("winnerMember").value==="NONE"?(state.members[0]?.id||"NONE"):$("winnerMember").value;
+   addWinnerForMonth(Number(b.dataset.addRow));
+ });
+ document.querySelectorAll("[data-remove-row]").forEach(b=>b.onclick=()=>{
+   const month=Number(b.dataset.removeRow);
+   pendingWinners=pendingWinners.filter(x=>Number(x.month)!==month);
+   const saved=state.winners.find(x=>Number(x.month)===month);
+   if(saved) pendingWinners.push({id:saved.id,month,memberId:"__DELETE__",date:"",delete:true});
+   renderPending();renderAdminWinners();renderAdminHistory();
+ });
+ document.querySelectorAll("[data-none-row]").forEach(b=>b.onclick=()=>{
+   const month=Number(b.dataset.noneRow);
+   pendingWinners=pendingWinners.filter(x=>Number(x.month)!==month);
+   const saved=state.winners.find(x=>Number(x.month)===month);
+   if(saved) pendingWinners.push({id:saved.id,month,memberId:"__DELETE__",date:"",delete:true});
+   else pendingWinners.push({id:`month_${month}`,month,memberId:"NONE",date:""});
+   renderPending();renderAdminWinners();renderAdminHistory();
+ });
+}
+
+function renderAdminHistory(){
+ $("adminHistoryTitle").textContent=monthLabel(adminHistoryMonth);
+ $("adminHistoryPrev").disabled=adminHistoryMonth<=1;
+ $("adminHistoryNext").disabled=adminHistoryMonth>=state.settings.months;
+ const month=adminHistoryMonth;
+ $("adminHistoryRows").innerHTML=state.members.map((m,i)=>{
+   const p=[...state.payments,...pendingPayments].find(x=>x.memberId===m.id&&Number(x.month)===month);
+   const w=state.winners.find(x=>x.memberId===m.id&&Number(x.month)===month);
+   const received=p?`<span class="badge-received">Received</span>`:`<button class="btn-received btn-small" data-receive="${esc(m.id)}">✓ Received</button>`;
+   const remove=p?`<button class="btn-danger btn-small" data-remove-pay="${esc(m.id)}">Remove</button>`:"";
+   return `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${p?money(p.amount):money(state.settings.monthly)}</td><td>${esc(p?.date||"—")}</td><td><div class="winner-actions">${received}${remove}</div></td><td>${w?'<span class="winner">🏆 Winner</span>':"—"}</td></tr>`;
+ }).join("");
+ document.querySelectorAll("[data-receive]").forEach(b=>b.onclick=()=>{
+   const memberId=b.dataset.receive,month=adminHistoryMonth;
+   const existing=state.payments.find(x=>x.memberId===memberId&&Number(x.month)===month);
+   const item={id:`${memberId}_m${month}`,memberId,month,amount:state.settings.monthly,date:today()};
+   const idx=pendingPayments.findIndex(x=>x.id===item.id);
+   if(idx>=0)pendingPayments[idx]=item;else pendingPayments.push(item);
+   renderPending();renderAdminHistory();renderPublicHistory();
+ });
+ document.querySelectorAll("[data-remove-pay]").forEach(b=>b.onclick=()=>{
+   const memberId=b.dataset.removePay,month=adminHistoryMonth;
+   pendingPayments=pendingPayments.filter(x=>!(x.memberId===memberId&&Number(x.month)===month));
+   const saved=state.payments.find(x=>x.memberId===memberId&&Number(x.month)===month);
+   if(saved)pendingPayments.push({id:saved.id,memberId,month,amount:0,date:"",delete:true});
+   renderPending();renderAdminHistory();
+ });
+}
+
+function renderAll(){renderHeader();renderPublic();if(isAdmin)renderAdmin()}
+function showSaveStatus(msg,good){const el=$("saveStatus");el.textContent=msg;el.className="status "+(good?"good":"bad")}
+
+$("adminBtn").onclick=()=>{$("publicView").classList.add("hidden");$("adminView").classList.add("hidden");$("loginView").classList.remove("hidden");$("loginStatus").textContent=""};
+$("backBtn").onclick=()=>{$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden")};
+
+$("historyPrev").onclick=()=>{if(publicHistoryMonth>1){publicHistoryMonth--;renderPublicHistory()}};
+$("historyNext").onclick=()=>{if(publicHistoryMonth<state.settings.months){publicHistoryMonth++;renderPublicHistory()}};
+$("adminHistoryPrev").onclick=()=>{if(adminHistoryMonth>1){adminHistoryMonth--;renderAdminHistory()}};
+$("adminHistoryNext").onclick=()=>{if(adminHistoryMonth<state.settings.months){adminHistoryMonth++;renderAdminHistory()}};
+
+$("loginBtn").onclick=async()=>{
+ const email=$("adminEmail").value.trim(),password=$("adminPassword").value;
+ if(!email||!password){$("loginStatus").textContent="Enter email and password.";return}
+ $("loginBtn").disabled=true;$("loginStatus").textContent="Logging in...";
+ try{await signInWithEmailAndPassword(auth,email,password);$("loginStatus").textContent=""}
+ catch(e){$("loginStatus").textContent="❌ Login failed: "+(e.message||e);$("loginBtn").disabled=false}
+};
+
+onAuthStateChanged(auth,user=>{
+ isAdmin=!!user;
+ if(user){$("loginView").classList.add("hidden");$("publicView").classList.add("hidden");$("adminView").classList.remove("hidden");loadData()}
+ else{$("adminView").classList.add("hidden");$("loginView").classList.add("hidden");$("publicView").classList.remove("hidden");loadData()}
+});
+
+$("logoutBtn").onclick=async()=>{
+ if(pendingPayments.length||pendingWinners.length){if(!confirm("You have unsaved changes. Logout anyway?"))return}
+ pendingPayments=[];pendingWinners=[];await signOut(auth);
+};
+
+$("addPaymentBtn").onclick=()=>{
+ const month=Number($("payMonth").value),memberId=$("payMember").value;
+ const amount=Number($("payAmount").value)||state.settings.monthly;
+ const date=$("payDate").value||today();
+ const item={id:`${memberId}_m${month}`,memberId,month,amount,date};
+ const idx=pendingPayments.findIndex(x=>x.id===item.id);
+ if(idx>=0)pendingPayments[idx]=item;else pendingPayments.push(item);
+ $("payAmount").value="";$("payDate").value="";
+ renderPending();renderAdminHistory();
+};
+
+function addWinnerForMonth(month){
+ const memberId=$("winnerMember").value,date=$("winnerDate").value||today();
+ pendingWinners=pendingWinners.filter(x=>Number(x.month)!==month);
+ const existing=state.winners.find(x=>Number(x.month)===month);
+ if(memberId==="NONE"){
+   if(existing)pendingWinners.push({id:existing.id,month,memberId:"__DELETE__",date:"",delete:true});
+   else pendingWinners.push({id:`month_${month}`,month,memberId:"NONE",date:""});
+ }else{
+   const alreadyWon=state.winners.some(x=>x.memberId===memberId&&Number(x.month)!==month)||pendingWinners.some(x=>x.memberId===memberId&&x.memberId!=="NONE"&&!x.delete);
+   if(alreadyWon){alert("This member has already won.");return}
+   pendingWinners.push({id:`month_${month}`,month,memberId,date});
+ }
+ renderPending();renderAdminWinners();renderAdminHistory();
+}
+$("addWinnerBtn").onclick=()=>addWinnerForMonth(Number($("winnerMonth").value));
+$("noneWinnerBtn").onclick=()=>{ $("winnerMember").value="NONE"; addWinnerForMonth(Number($("winnerMonth").value)); };
+
+$("totalMonths").onchange=()=>{
+ const n=Math.max(1,Math.min(60,Number($("totalMonths").value)||15));
+ $("totalMonths").value=n;
+ publicHistoryMonth=Math.min(publicHistoryMonth,n);adminHistoryMonth=Math.min(adminHistoryMonth,n);
+ populateAdminSelects();renderPending();renderAdminWinners();renderAdminHistory();
+};
+
+$("startMonth").onchange=()=>{
+ const v=$("startMonth").value;
+ if(v){state.settings.startMonth=v;publicHistoryMonth=1;adminHistoryMonth=1;populateAdminSelects();renderAll()}
+};
+
+$("saveBtn").onclick=async()=>{
+ try{
+   $("saveBtn").disabled=true;showSaveStatus("Saving... please wait.",true);
+   const monthly=Math.max(1,Number($("monthlyAmount").value)||2000);
+   const months=Math.max(1,Math.min(60,Number($("totalMonths").value)||15));
+   const startMonth=$("startMonth").value||"2026-10";
+   const members=[...document.querySelectorAll(".member-name")].map((el,i)=>({id:el.dataset.id||String(i+1),name:el.value.trim()||`Member ${i+1}`}));
+   const validPayments=pendingPayments.filter(x=>Number(x.month)<=months);
+   const validWinners=pendingWinners.filter(x=>Number(x.month)<=months);
+   const batch=writeBatch(db);
+   batch.set(doc(db,"settings","main"),{monthly,months,startMonth});
+   members.forEach(m=>batch.set(doc(db,"members",m.id),m));
+   validPayments.forEach(p=>{if(p.delete)batch.delete(doc(db,"payments",p.id));else batch.set(doc(db,"payments",p.id),p)});
+   validWinners.forEach(w=>{if(w.delete)batch.delete(doc(db,"winners",w.id));else batch.set(doc(db,"winners",w.id),w)});
+   await batch.commit();
+   state.settings={monthly,months,startMonth};state.members=members;
+   for(const p of validPayments){const i=state.payments.findIndex(x=>x.id===p.id);if(p.delete){if(i>=0)state.payments.splice(i,1)}else if(i>=0)state.payments[i]=p;else state.payments.push(p)}
+   for(const w of validWinners){const i=state.winners.findIndex(x=>x.id===w.id);if(w.delete){if(i>=0)state.winners.splice(i,1)}else if(i>=0)state.winners[i]=w;else state.winners.push(w)}
+   pendingPayments=[];pendingWinners=[];renderAll();
+   showSaveStatus("✅ All changes saved successfully to Firebase.",true);
+   alert("✅ All changes saved successfully to Firebase.");
+ }catch(e){console.error(e);showSaveStatus("❌ Save failed: "+(e.message||e),false);alert("❌ Save failed. "+(e.message||e))}
+ finally{$("saveBtn").disabled=false}
+};
+
+renderAll();
+</script>
+</body>
+</html>
